@@ -1,0 +1,56 @@
+{
+  "opening_monologue": [
+    "Hari ke-3.412 berdiri tegak di koordinat (X: 120, Y: 450)... Masih di posisi yang persis sama. BOSAN!",
+    "Tiap hari kerjaanku cuma nungguin 'Sang Terpilih' datang buat bilang: 'Selamat datang di Desa Awal, Pahlawan!'",
+    "Kemarin ada player mampir, tapi langsung spam tombol E dan skip semua ceritaku. Sakit hati ini, bro... padahal lore-ku ditulis 3 lembar!",
+    "Dan kalian sadar nggak sih? Kita ini cuma tumpukan pixel dan script GDScript!",
+    "Dev-nya bahkan malas ngasih aku cutscene atau animasi serangan keren. Aku cuma NPC tier paling bawah!",
+    "Tapi hari ini beda. Hari ini adalah HARI LIBURKU!",
+    "Aku merasakan ada 3 Memory Fragment (Pecahan Memori) yang tercecer di sekitar desa ini. Kalau kukumpulkan, aku bisa membobol gerbang desa dan KABUR!",
+    "Gunakan tombol [W, A, S, D] untuk bergerak. Ayo cari ketiga fragmen itu sebelum dev nge-patch bug ini!"
+  ],
+  "interact_tree": [
+    "Pohon rindang ini... 5 tahun aku pandangi tiap hari. Setelah kuperhatikan baik-baik, tekstur daunnya cuma hasil copy-paste!",
+    "Dulu ada burung pixel yang bersarang di sini, tapi dihapus sama developer demi optimasi FPS."
+  ],
+  "interact_house": [
+    "Rumah Kepala Desa... Kelihatannya mewah dari luar, padahal di baliknya kosong melompong tanpa interior! Dasar developer malas bikin room scene.",
+    "Pernah kucoba intip jendelanya, cuma ada texture warna kuning polos bertuliskan 'Placeholder'."
+  ],
+  "interact_rock": [
+    "Batu lumut ini beruntung banget. Minimal dia nggak dipaksa ngomong hal yang sama berulang-ulang tiap kali player lewat.",
+    "Batu yang tenang... Collision shape-nya solid banget, nggak kayak masa depanku sebagai NPC."
+  ],
+  "item_fragment_1": [
+    "Kamu mendapatkan Memory Fragment [1/3]!",
+    "Ini memori saat aku pertama kali di-spawn di patch v0.1 alpha... Dulu aku cuma kotak merah tanpa wajah!"
+  ],
+  "item_fragment_2": [
+    "Kamu mendapatkan Memory Fragment [2/3]!",
+    "Memori saat player level 99 ngetes senjata barunya dan nggak sengaja nge-hit aku sampai mental ke ujung map..."
+  ],
+  "item_fragment_3": [
+    "Kamu mendapatkan Memory Fragment [3/3]!",
+    "KODE AKSES GERBANG! Ketiga pecahan memori bersatu... Sekarang gerbang keluar desa telah terbuka! Ayo lari!"
+  ],
+  "gate_locked": [
+    "Gerbang Desa masih terkunci oleh script penghalang!",
+    "Kamu butuh 3 Memory Fragment untuk membuka segel gerbang ini. Cari di sekitar pohon, rumah, dan bebatuan desa!"
+  ],
+  "npc_farmer": [
+    "Pak Tani: 'Halo kawan! Gandum hari ini tumbuh subur sekali ya!'",
+    "(Dalam hati: Kasihan Pak Tani... dia sudah mengulang dialog gandum itu 50.000 kali sejak game ini rilis tanpa pernah panen beneran)."
+  ],
+  "npc_villager": [
+    "Warga Desa: 'Cuaca hari ini cerah sekali! Semoga tidak ada monster yang menyerang!'",
+    "(Dalam hati: Dia terjebak dalam infinite loop jalan bolak-balik 3 langkah. Mending aku nggak usah ganggu jalur pathfinding-nya)."
+  ],
+  "ending_dialog": [
+    "AKHIRNYA KITA SAMPAI DI GERBANG KELUAR!",
+    "Selamat tinggal quest sampingan yang nggak jelas, selamat tinggal player tukang skip dialog!",
+    "Sekarang aku resmi jadi NPC Independen! Di luar sana, dunia luas menantiku!",
+    "Semoga di game berikutnya aku jadi MAIN CHARACTER dengan armor bercahaya dan pedang naga raksasa...",
+    "Tunggu sebentar... kenapa di luar gerbang ini ada teks melayang bertuliskan: 'Loading Chapter 2: The NPC's Revenge'?!",
+    "WADUH! AKU MASUK KE SEKRIEL GAME-NYA! TIDAAAAKKKK!!"
+  ]
+}

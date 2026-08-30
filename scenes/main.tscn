@@ -1,0 +1,818 @@
+[gd_scene load_steps=28 format=3 uid="uid://b2k8y1m4v30qj"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ground_grass.png" id="2_grass"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ground_path.png" id="3_path"]
+[ext_resource type="Script" path="res://scripts/interactable_object.gd" id="4_interact"]
+[ext_resource type="Texture2D" path="res://assets/sprites/house.png" id="5_house"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tree.png" id="6_tree"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tree_small.png" id="7_tree_small"]
+[ext_resource type="Texture2D" path="res://assets/sprites/rock.png" id="8_rock"]
+[ext_resource type="Script" path="res://scripts/escape_gate.gd" id="9_gate"]
+[ext_resource type="Texture2D" path="res://assets/sprites/gate_closed.png" id="10_gate_closed"]
+[ext_resource type="Texture2D" path="res://assets/sprites/gate_open.png" id="11_gate_open"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx_gate_unlock.wav" id="12_sfx_unlock"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx_escape.wav" id="13_sfx_escape"]
+[ext_resource type="Script" path="res://scripts/item.gd" id="14_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/memory_fragment.png" id="15_fragment"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx_collect.wav" id="16_sfx_collect"]
+[ext_resource type="Script" path="res://scripts/npc_wanderer.gd" id="17_wanderer"]
+[ext_resource type="Texture2D" path="res://assets/sprites/npc_farmer.png" id="18_farmer"]
+[ext_resource type="Texture2D" path="res://assets/sprites/npc_villager.png" id="19_villager"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="20_player"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player_idle.png" id="21_player_idle"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx_footstep.wav" id="22_sfx_footstep"]
+[ext_resource type="Script" path="res://scripts/dialog_system.gd" id="23_dialog"]
+[ext_resource type="Texture2D" path="res://assets/sprites/portrait_npc.png" id="24_portrait"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx_dialog.wav" id="25_sfx_dialog"]
+[ext_resource type="Texture2D" path="res://assets/sprites/item_icon.png" id="26_item_icon"]
+[ext_resource type="AudioStream" path="res://assets/audio/bgm_calm.wav" id="27_bgm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_house"]
+size = Vector2(80, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_house_interact"]
+radius = 65.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tree"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tree_interact"]
+radius = 45.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rock"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rock_interact"]
+radius = 35.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate"]
+size = Vector2(70, 70)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_item"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_npc"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_npc_interact"]
+radius = 35.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(20, 24)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
+bg_color = Color(0.12, 0.13, 0.18, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.7, 0.9, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toast"]
+bg_color = Color(0.1, 0.15, 0.22, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.85, 1, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause"]
+bg_color = Color(0.08, 0.09, 0.12, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.6, 0.7, 0.8)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialog"]
+bg_color = Color(0.1, 0.11, 0.16, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.7, 0.35, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="GroundGrass" type="TextureRect" parent="Environment"]
+offset_left = -1200.0
+offset_top = -1000.0
+offset_right = 1200.0
+offset_bottom = 1000.0
+texture = ExtResource("2_grass")
+stretch_mode = 1
+
+[node name="PathHorizontal" type="TextureRect" parent="Environment"]
+offset_left = -400.0
+offset_top = -24.0
+offset_right = 450.0
+offset_bottom = 24.0
+texture = ExtResource("3_path")
+stretch_mode = 1
+
+[node name="PathVertical" type="TextureRect" parent="Environment"]
+offset_left = -24.0
+offset_top = -200.0
+offset_right = 24.0
+offset_bottom = 220.0
+texture = ExtResource("3_path")
+stretch_mode = 1
+
+[node name="PathToHouse" type="TextureRect" parent="Environment"]
+offset_left = 120.0
+offset_top = -120.0
+offset_right = 168.0
+offset_bottom = 0.0
+texture = ExtResource("3_path")
+stretch_mode = 1
+
+[node name="PathToInn" type="TextureRect" parent="Environment"]
+offset_left = -220.0
+offset_top = 0.0
+offset_right = -172.0
+offset_bottom = 100.0
+texture = ExtResource("3_path")
+stretch_mode = 1
+
+[node name="House1" type="StaticBody2D" parent="Environment"]
+position = Vector2(150, -150)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/House1"]
+texture = ExtResource("5_house")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/House1"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_house")
+
+[node name="InteractArea" type="Area2D" parent="Environment/House1"]
+script = ExtResource("4_interact")
+object_name = "Rumah Kepala Desa"
+dialog_key = "interact_house"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/House1/InteractArea"]
+position = Vector2(0, 20)
+shape = SubResource("CircleShape2D_house_interact")
+
+[node name="PromptLabel" type="Label" parent="Environment/House1/InteractArea"]
+visible = false
+offset_left = -90.0
+offset_top = -60.0
+offset_right = 90.0
+offset_bottom = -37.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "[E] Periksa Rumah"
+horizontal_alignment = 1
+
+[node name="House2" type="StaticBody2D" parent="Environment"]
+position = Vector2(-220, 120)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/House2"]
+texture = ExtResource("5_house")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/House2"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_house")
+
+[node name="InteractArea" type="Area2D" parent="Environment/House2"]
+script = ExtResource("4_interact")
+object_name = "Kedai Desa"
+dialog_key = "interact_house"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/House2/InteractArea"]
+position = Vector2(0, 20)
+shape = SubResource("CircleShape2D_house_interact")
+
+[node name="PromptLabel" type="Label" parent="Environment/House2/InteractArea"]
+visible = false
+offset_left = -90.0
+offset_top = -60.0
+offset_right = 90.0
+offset_bottom = -37.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "[E] Periksa Kedai"
+horizontal_alignment = 1
+
+[node name="Tree1" type="StaticBody2D" parent="Environment"]
+position = Vector2(-120, -180)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Tree1"]
+position = Vector2(0, -25)
+texture = ExtResource("6_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree1"]
+shape = SubResource("CircleShape2D_tree")
+
+[node name="InteractArea" type="Area2D" parent="Environment/Tree1"]
+script = ExtResource("4_interact")
+object_name = "Pohon Rindang"
+dialog_key = "interact_tree"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree1/InteractArea"]
+shape = SubResource("CircleShape2D_tree_interact")
+
+[node name="PromptLabel" type="Label" parent="Environment/Tree1/InteractArea"]
+visible = false
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = -57.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "[E] Periksa Pohon"
+horizontal_alignment = 1
+
+[node name="Tree2" type="StaticBody2D" parent="Environment"]
+position = Vector2(300, -120)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Tree2"]
+position = Vector2(0, -25)
+texture = ExtResource("6_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree2"]
+shape = SubResource("CircleShape2D_tree")
+
+[node name="Tree3" type="StaticBody2D" parent="Environment"]
+position = Vector2(-320, -80)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Tree3"]
+position = Vector2(0, -20)
+texture = ExtResource("7_tree_small")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree3"]
+shape = SubResource("CircleShape2D_tree")
+
+[node name="Tree4" type="StaticBody2D" parent="Environment"]
+position = Vector2(120, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Tree4"]
+position = Vector2(0, -25)
+texture = ExtResource("6_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree4"]
+shape = SubResource("CircleShape2D_tree")
+
+[node name="Tree5" type="StaticBody2D" parent="Environment"]
+position = Vector2(320, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Tree5"]
+position = Vector2(0, -20)
+texture = ExtResource("7_tree_small")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree5"]
+shape = SubResource("CircleShape2D_tree")
+
+[node name="Rock1" type="StaticBody2D" parent="Environment"]
+position = Vector2(-80, 160)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Rock1"]
+texture = ExtResource("8_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Rock1"]
+shape = SubResource("CircleShape2D_rock")
+
+[node name="InteractArea" type="Area2D" parent="Environment/Rock1"]
+script = ExtResource("4_interact")
+object_name = "Batu Lumut"
+dialog_key = "interact_rock"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Rock1/InteractArea"]
+shape = SubResource("CircleShape2D_rock_interact")
+
+[node name="PromptLabel" type="Label" parent="Environment/Rock1/InteractArea"]
+visible = false
+offset_left = -70.0
+offset_top = -45.0
+offset_right = 70.0
+offset_bottom = -22.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "[E] Periksa Batu"
+horizontal_alignment = 1
+
+[node name="Rock2" type="StaticBody2D" parent="Environment"]
+position = Vector2(250, 60)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Rock2"]
+texture = ExtResource("8_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Rock2"]
+shape = SubResource("CircleShape2D_rock")
+
+[node name="EscapeGate" type="Area2D" parent="Environment"]
+position = Vector2(440, 0)
+script = ExtResource("9_gate")
+tex_closed = ExtResource("10_gate_closed")
+tex_open = ExtResource("11_gate_open")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/EscapeGate"]
+texture = ExtResource("10_gate_closed")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/EscapeGate"]
+shape = SubResource("RectangleShape2D_gate")
+
+[node name="AuraParticles" type="CPUParticles2D" parent="Environment/EscapeGate"]
+amount = 16
+lifetime = 1.2
+emission_shape = 1
+emission_sphere_radius = 24.0
+gravity = Vector2(0, -30)
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0.9, 0.4, 0.3, 0.7)
+
+[node name="PromptLabel" type="Label" parent="Environment/EscapeGate"]
+visible = false
+offset_left = -110.0
+offset_top = -55.0
+offset_right = 110.0
+offset_bottom = -32.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Gerbang Terkunci! (0/3)"
+horizontal_alignment = 1
+
+[node name="SfxUnlock" type="AudioStreamPlayer2D" parent="Environment/EscapeGate"]
+stream = ExtResource("12_sfx_unlock")
+
+[node name="SfxEscape" type="AudioStreamPlayer2D" parent="Environment/EscapeGate"]
+stream = ExtResource("13_sfx_escape")
+
+[node name="ItemFragment1" type="Area2D" parent="."]
+position = Vector2(-160, -130)
+script = ExtResource("14_item")
+item_index = 1
+dialog_key = "item_fragment_1"
+
+[node name="Sprite2D" type="Sprite2D" parent="ItemFragment1"]
+texture = ExtResource("15_fragment")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemFragment1"]
+shape = SubResource("CircleShape2D_item")
+
+[node name="SparkleParticles" type="CPUParticles2D" parent="ItemFragment1"]
+amount = 8
+lifetime = 1.0
+emission_shape = 1
+emission_sphere_radius = 12.0
+gravity = Vector2(0, -15)
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0.4, 0.9, 1, 0.8)
+
+[node name="PromptLabel" type="Label" parent="ItemFragment1"]
+visible = false
+offset_left = -110.0
+offset_top = -38.0
+offset_right = 110.0
+offset_bottom = -15.0
+theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "[E] Ambil Memory Fragment #1"
+horizontal_alignment = 1
+
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="ItemFragment1"]
+stream = ExtResource("16_sfx_collect")
+
+[node name="ItemFragment2" type="Area2D" parent="."]
+position = Vector2(170, 160)
+script = ExtResource("14_item")
+item_index = 2
+dialog_key = "item_fragment_2"
+
+[node name="Sprite2D" type="Sprite2D" parent="ItemFragment2"]
+texture = ExtResource("15_fragment")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemFragment2"]
+shape = SubResource("CircleShape2D_item")
+
+[node name="SparkleParticles" type="CPUParticles2D" parent="ItemFragment2"]
+amount = 8
+lifetime = 1.0
+emission_shape = 1
+emission_sphere_radius = 12.0
+gravity = Vector2(0, -15)
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0.4, 0.9, 1, 0.8)
+
+[node name="PromptLabel" type="Label" parent="ItemFragment2"]
+visible = false
+offset_left = -110.0
+offset_top = -38.0
+offset_right = 110.0
+offset_bottom = -15.0
+theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "[E] Ambil Memory Fragment #2"
+horizontal_alignment = 1
+
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="ItemFragment2"]
+stream = ExtResource("16_sfx_collect")
+
+[node name="ItemFragment3" type="Area2D" parent="."]
+position = Vector2(-80, 210)
+script = ExtResource("14_item")
+item_index = 3
+dialog_key = "item_fragment_3"
+
+[node name="Sprite2D" type="Sprite2D" parent="ItemFragment3"]
+texture = ExtResource("15_fragment")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemFragment3"]
+shape = SubResource("CircleShape2D_item")
+
+[node name="SparkleParticles" type="CPUParticles2D" parent="ItemFragment3"]
+amount = 8
+lifetime = 1.0
+emission_shape = 1
+emission_sphere_radius = 12.0
+gravity = Vector2(0, -15)
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0.4, 0.9, 1, 0.8)
+
+[node name="PromptLabel" type="Label" parent="ItemFragment3"]
+visible = false
+offset_left = -110.0
+offset_top = -38.0
+offset_right = 110.0
+offset_bottom = -15.0
+theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "[E] Ambil Memory Fragment #3"
+horizontal_alignment = 1
+
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="ItemFragment3"]
+stream = ExtResource("16_sfx_collect")
+
+[node name="NPCFarmer" type="CharacterBody2D" parent="."]
+position = Vector2(180, -60)
+script = ExtResource("17_wanderer")
+npc_name = "Pak Tani"
+dialog_key = "npc_farmer"
+wander_radius = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCFarmer"]
+texture = ExtResource("18_farmer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCFarmer"]
+shape = SubResource("CircleShape2D_npc")
+
+[node name="InteractArea" type="Area2D" parent="NPCFarmer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCFarmer/InteractArea"]
+shape = SubResource("CircleShape2D_npc_interact")
+
+[node name="PromptLabel" type="Label" parent="NPCFarmer"]
+visible = false
+offset_left = -50.0
+offset_top = -35.0
+offset_right = 50.0
+offset_bottom = -12.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "[E] Bicara"
+horizontal_alignment = 1
+
+[node name="NPCVillager" type="CharacterBody2D" parent="."]
+position = Vector2(-150, 60)
+script = ExtResource("17_wanderer")
+npc_name = "Warga Desa"
+dialog_key = "npc_villager"
+wander_radius = 60.0
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCVillager"]
+texture = ExtResource("19_villager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCVillager"]
+shape = SubResource("CircleShape2D_npc")
+
+[node name="InteractArea" type="Area2D" parent="NPCVillager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCVillager/InteractArea"]
+shape = SubResource("CircleShape2D_npc_interact")
+
+[node name="PromptLabel" type="Label" parent="NPCVillager"]
+visible = false
+offset_left = -50.0
+offset_top = -35.0
+offset_right = 50.0
+offset_bottom = -12.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "[E] Bicara"
+horizontal_alignment = 1
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(0, 0)
+script = ExtResource("20_player")
+
+[node name="DustParticles" type="CPUParticles2D" parent="Player"]
+position = Vector2(0, 12)
+emitting = false
+amount = 6
+lifetime = 0.4
+speed_scale = 1.2
+emission_shape = 1
+emission_sphere_radius = 4.0
+gravity = Vector2(0, -10)
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0.6, 0.5, 0.4, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("21_player_idle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="SfxFootstep" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("22_sfx_footstep")
+volume_db = -6.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TopRightContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+
+[node name="ItemCounterPanel" type="PanelContainer" parent="HUD/TopRightContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TopRightContainer/ItemCounterPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("26_item_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CountLabel" type="Label" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "0/3"
+
+[node name="Slot1" type="TextureRect" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer/HBoxContainer"]
+modulate = Color(0.3, 0.3, 0.35, 0.6)
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = ExtResource("26_item_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot2" type="TextureRect" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer/HBoxContainer"]
+modulate = Color(0.3, 0.3, 0.35, 0.6)
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = ExtResource("26_item_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot3" type="TextureRect" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer/HBoxContainer"]
+modulate = Color(0.3, 0.3, 0.35, 0.6)
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = ExtResource("26_item_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ToastPanel" type="PanelContainer" parent="HUD"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_toast")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/ToastPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 6
+
+[node name="ToastLabel" type="Label" parent="HUD/ToastPanel/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "✨ Memory Fragment [1/3] Terkumpul!"
+horizontal_alignment = 1
+
+[node name="PauseMenu" type="Control" parent="HUD"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HUD/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Panel" type="Panel" parent="HUD/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -140.0
+offset_right = 160.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pause")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PauseMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="HUD/PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 20
+text = "GAME DI-PAUSE"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="HUD/PauseMenu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Lanjutkan Permainan"
+
+[node name="RestartButton" type="Button" parent="HUD/PauseMenu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Ulangi dari Awal"
+
+[node name="QuitButton" type="Button" parent="HUD/PauseMenu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Keluar Game"
+
+[node name="ScreenFlash" type="ColorRect" parent="HUD"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DialogSystem" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("23_dialog")
+
+[node name="Panel" type="Panel" parent="DialogSystem"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = -180.0
+offset_right = 420.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialog")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogSystem/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogSystem/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Portrait" type="TextureRect" parent="DialogSystem/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("24_portrait")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogSystem/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpeakerLabel" type="Label" parent="DialogSystem/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 15
+text = "NPC Pemalas (Kamu)"
+
+[node name="DialogLabel" type="Label" parent="DialogSystem/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 14
+text = "Teks dialog..."
+autowrap_mode = 3
+
+[node name="HintLabel" type="Label" parent="DialogSystem/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_font_sizes/font_size = 11
+text = "[E / Klik] Lanjut | [ESC] Lewati"
+horizontal_alignment = 2
+
+[node name="SfxDialog" type="AudioStreamPlayer" parent="DialogSystem"]
+stream = ExtResource("25_sfx_dialog")
+volume_db = -8.0
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_bgm")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="pressed" from="HUD/PauseMenu/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="HUD/PauseMenu/Panel/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HUD/PauseMenu/Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
