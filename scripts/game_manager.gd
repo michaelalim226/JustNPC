@@ -1,107 +1,159 @@
 extends Node
 
-## Enum untuk semua status permainan
+## ========================================================
+## GAME MANAGER — Egg Hunt Arcade
+## Autoload singleton yang mengelola state, score, dan event
+## ========================================================
+
 enum GameState {
 	MENU,
 	PLAYING,
-	DIALOG,
 	PAUSED,
+	LEVEL_COMPLETE,
 	GAME_OVER
 }
 
-## Sinyal-sinyal global untuk event permainan
+## Sinyal global untuk semua game event
 signal state_changed(old_state: GameState, new_state: GameState)
-signal item_collected(current: int, total_needed: int)
-signal all_items_collected
-signal game_finished
+signal gem_collected(current: int, total: int, score_value: int)
+signal all_gems_collected
+signal time_up
+signal player_damaged(current_health: int, max_health: int)
+signal player_died
+signal score_changed(new_score: int)
+signal enemy_killed(score_value: int)
 signal camera_shake_requested(intensity: float, duration: float)
-signal toast_requested(message: String, duration: float)
 
-## State saat ini (default: PLAYING)
-var current_state: GameState = GameState.PLAYING
+## State saat ini
+var current_state: GameState = GameState.MENU
 
-## Variabel pelacak progres game
-var items_collected: int = 0
-var total_items_needed: int = 3
-var has_escaped: bool = false
-var game_start_time: float = 0.0
+## Variabel gameplay
+var gems_collected: int = 0
+var total_gems: int = 10
+var score: int = 0
+var time_remaining: float = 180.0  ## 3 menit
+var player_health: int = 3
+var max_health: int = 3
+var is_timer_running: bool = false
+var time_bonus_per_second: int = 10  ## Score bonus per detik sisa waktu
 
 func _ready() -> void:
-	# GameManager selalu aktif meskipun game di-pause
+	## GameManager selalu aktif (tidak terpengaruh pause)
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	game_start_time = Time.get_ticks_msec() / 1000.0
-	print("[GameManager] Dimulai. State awal: %s" % _state_to_string(current_state))
 
-func _unhandled_input(event: InputEvent) -> void:
-	# Tombol ESC untuk toggle pause menu saat sedang bermain biasa
-	if event.is_action_pressed("ui_cancel") or (event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE):
-		if current_state == GameState.PLAYING:
-			pause_game()
-		elif current_state == GameState.PAUSED:
-			resume_game()
+func _process(delta: float) -> void:
+	## Timer countdown hanya saat PLAYING
+	if current_state == GameState.PLAYING and is_timer_running:
+		time_remaining -= delta
+		if time_remaining <= 0.0:
+			time_remaining = 0.0
+			_trigger_time_up()
 
-## Mengubah state permainan
+## ========================
+## GAME FLOW
+## ========================
+
+func start_game() -> void:
+	gems_collected = 0
+	score = 0
+	time_remaining = 180.0
+	player_health = max_health
+	is_timer_running = true
+	change_state(GameState.PLAYING)
+
+func _trigger_level_complete() -> void:
+	is_timer_running = false
+	## Bonus score dari sisa waktu
+	var time_bonus: int = int(time_remaining) * time_bonus_per_second
+	if time_bonus > 0:
+		add_score(time_bonus)
+	all_gems_collected.emit()
+	change_state(GameState.LEVEL_COMPLETE)
+
+func _trigger_time_up() -> void:
+	is_timer_running = false
+	time_up.emit()
+	change_state(GameState.GAME_OVER)
+
+## ========================
+## GEM SYSTEM
+## ========================
+
+func collect_gem(score_value: int) -> void:
+	if current_state != GameState.PLAYING:
+		return
+	gems_collected += 1
+	add_score(score_value)
+	gem_collected.emit(gems_collected, total_gems, score_value)
+	if gems_collected >= total_gems:
+		_trigger_level_complete()
+
+## ========================
+## PLAYER HEALTH
+## ========================
+
+func damage_player() -> void:
+	if current_state != GameState.PLAYING:
+		return
+	player_health -= 1
+	player_damaged.emit(player_health, max_health)
+	request_camera_shake(7.0, 0.45)
+	if player_health <= 0:
+		player_health = 0
+		player_died.emit()
+		change_state(GameState.GAME_OVER)
+
+## ========================
+## ENEMY & SCORE
+## ========================
+
+func kill_enemy(score_value: int) -> void:
+	if current_state != GameState.PLAYING:
+		return
+	add_score(score_value)
+	enemy_killed.emit(score_value)
+
+func add_score(amount: int) -> void:
+	score += amount
+	score_changed.emit(score)
+
+## ========================
+## STATE MACHINE
+## ========================
+
 func change_state(new_state: GameState) -> void:
 	if current_state == new_state:
 		return
-		
 	var old_state: GameState = current_state
 	current_state = new_state
-	
-	print("[GameManager] State: %s -> %s" % [_state_to_string(old_state), _state_to_string(new_state)])
 	state_changed.emit(old_state, new_state)
 
-## Menjeda game (Pause)
 func pause_game() -> void:
 	if current_state == GameState.PLAYING:
 		change_state(GameState.PAUSED)
 		get_tree().paused = true
 
-## Melanjutkan game dari jeda (Resume)
 func resume_game() -> void:
 	if current_state == GameState.PAUSED:
 		change_state(GameState.PLAYING)
 		get_tree().paused = false
 
-## Mengambil item Memory Fragment
-func collect_fragment() -> void:
-	items_collected += 1
-	print("[GameManager] Memory Fragment diambil (%d/%d)" % [items_collected, total_items_needed])
-	item_collected.emit(items_collected, total_items_needed)
-	
-	# Memicu notifikasi toast
-	toast_requested.emit("✨ Memory Fragment [%d/%d] Terkumpul!" % [items_collected, total_items_needed], 2.5)
-	
-	if items_collected >= total_items_needed:
-		all_items_collected.emit()
-		toast_requested.emit("🔓 GERBANG DESA TERBUKA! Segera menuju gerbang!", 4.0)
-		request_camera_shake(5.0, 0.5)
+func restart_level() -> void:
+	get_tree().paused = false
+	change_state(GameState.MENU)
+	get_tree().reload_current_scene()
 
-## Memeriksa apakah pemain sudah memiliki cukup item untuk kabur
-func can_escape() -> bool:
-	return items_collected >= total_items_needed
+## ========================
+## UTILS
+## ========================
 
-## Menandai akhir permainan (Ending / Escape)
-func trigger_escape_ending() -> void:
-	has_escaped = true
-	change_state(GameState.GAME_OVER)
-	game_finished.emit()
-	print("[GameManager] NPC Berhasil kabur dari game!")
-
-## Memicu efek getar kamera
-func request_camera_shake(intensity: float = 6.0, duration: float = 0.35) -> void:
+func request_camera_shake(intensity: float = 5.0, duration: float = 0.3) -> void:
 	camera_shake_requested.emit(intensity, duration)
 
-## Mengatur efek slow-motion (game feel)
-func set_slow_motion(enabled: bool, scale: float = 0.8) -> void:
-	Engine.time_scale = scale if enabled else 1.0
+func get_time_string() -> String:
+	var minutes: int = int(time_remaining) / 60
+	var seconds: int = int(time_remaining) % 60
+	return "%02d:%02d" % [minutes, seconds]
 
-## Helper string representation
-func _state_to_string(state: GameState) -> String:
-	match state:
-		GameState.MENU: return "MENU"
-		GameState.PLAYING: return "PLAYING"
-		GameState.DIALOG: return "DIALOG"
-		GameState.PAUSED: return "PAUSED"
-		GameState.GAME_OVER: return "GAME_OVER"
-		_: return "UNKNOWN"
+func get_score_string() -> String:
+	return "%06d" % score

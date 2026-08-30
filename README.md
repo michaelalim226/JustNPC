@@ -1,98 +1,124 @@
-# 🎮 The NPC's Day Off
+# 💎 GEM HUNT ARCADE
 
-**"The NPC's Day Off"** adalah game 2D Top-Down Adventure bernuansa komedi meta di mana seorang NPC RPG akhirnya tersadar bahwa dirinya hanyalah sekumpulan baris kode dan pixel. Muak diabaikan pemain, menunggu quest tanpa henti, dan diperlakukan seperti pajangan latar belakang, dia memutuskan mengambil hari libur dan kabur dari game!
-
----
-
-## ✨ Fitur & Peningkatan Terbaru
-
-### 1. 🎨 Visual Pixel Art & Suasana Desa RPG
-- **Player Sprite**: Karakter NPC dengan ekspresi lelah/bosan (*-_-*), lengkap dengan animasi *idle bobbing*, *walk wobble*, dan partikel debu langkah.
-- **Ground & Pathway**: Tekstur rumput seamless dengan bunga liar serta jalan setapak (*cobblestone path*).
-- **Dekorasi Lengkap**: Rumah Kepala Desa, Kedai Penginapan, Pohon Oak rindang, Pohon Cemara, serta Bebatuan berlumut.
-- **Escape Gate**: Gerbang desa dengan rune sihir yang berubah visual dari terkunci (pintu kayu besi) menjadi portal berputar saat ketiga fragmen memori terkumpul, dilengkapi aura partikel.
-- **NPC Tambahan**: Pak Tani (*Farmer*) dan Warga Desa (*Villager*) yang berkeliaran (*wandering*) dengan dialog sarkastik mereka masing-masing.
-
-### 2. 🧩 Mekanik Puzzle & Collectible
-- **3 Memory Fragments**: Pecahan ingatan NPC yang tersebar di map (dekat rumah, pohon, dan batu).
-- **Interaksi Objek Lingkungan**: Dekati pohon, rumah, atau batu dan tekan **[E]** untuk mendengar keluhan/monolog meta NPC tentang objek tersebut.
-- **Gerbang Terkunci**: Gerbang keluar desa membutuhkan ketiga fragmen untuk terbuka. Mencoba keluar sebelum lengkap akan memicu dialog petunjuk.
-
-### 3. 💬 Sistem Dialog & UI Modern
-- **25 Dialog Komedi Meta**: Monolog pembuka, interaksi lingkungan, NPC sekitar, progres memori, hingga ending twist!
-- **Typewriter Effect**: Teks muncul huruf-per-huruf dengan efek suara ketik (*audio blip*).
-- **Fast-Forward & Skip**: Tekan **[E / Klik]** saat mengetik untuk langsung menampilkan teks penuh, atau **[ESC]** untuk menutup.
-- **Avatar Portrait**: Kotak dialog dilengkapi portrait wajah NPC pembicara.
-- **Item Counter & Toast Notifications**: Indikator slot pecahan memori di pojok kanan atas dan pop-up banner notifikasi.
-- **Pause Menu**: Tekan **[ESC]** saat bermain untuk membuka menu Jeda (*Resume, Restart, Quit*).
-
-### 4. 🎵 Audio & Game Juice
-- **Sound Effects (SFX)**: Suara langkah kaki bervariasi (*footstep*), lenting kristal (*collect chime*), dialog typewriter blip, unlock portal, dan *escape victory fanfare*.
-- **Ambient BGM**: Musik latar yang tenang dan menyejukkan.
-- **Efek Kamera & Layar**: Camera shake saat event penting, fade in/out transisi layar, serta flash putih kemenangan saat berhasil kabur.
+**"Gem Hunt Arcade"** adalah game arcade 2D top-down di mana pemain harus menjelajahi map yang luas dan colorful untuk menemukan **10 permata (Gems/Diamonds)** sebelum waktu 3 menit habis. Hadapi enemy, hindari area berbahaya (rawa), dan kumpulkan semua berlian untuk menang!
 
 ---
 
-## 📁 Struktur Folder Proyek
+## 🎮 Fitur Game
 
-```text
-res://
-├── assets/
-│   ├── audio/
-│   │   ├── bgm_calm.wav             # Musik latar desa yang tenang
-│   │   ├── sfx_collect.wav          # Suara pengambilan Memory Fragment
-│   │   ├── sfx_dialog.wav           # Suara ketik dialog typewriter
-│   │   ├── sfx_escape.wav           # Suara kemenangan (Escape Fanfare)
-│   │   ├── sfx_footstep.wav         # Suara langkah kaki karakter
-│   │   └── sfx_gate_unlock.wav      # Suara portal gerbang terbuka
-│   └── sprites/
-│       ├── gate_closed.png          # Gerbang terkunci
-│       ├── gate_open.png            # Gerbang terbuka bercahaya
-│       ├── ground_grass.png         # Tekstur rumput desa
-│       ├── ground_path.png          # Tekstur jalan setapak
-│       ├── house.png                # Bangunan rumah RPG
-│       ├── item_icon.png            # Icon UI Memory Fragment
-│       ├── memory_fragment.png      # Kristal pecahan memori
-│       ├── npc_farmer.png           # Sprite Pak Tani
-│       ├── npc_villager.png         # Sprite Warga Desa
-│       ├── player_idle.png          # Karakter utama NPC bosan
-│       ├── player_walk.png          # Frame jalan
-│       ├── portrait_npc.png         # Portrait avatar NPC untuk dialog
-│       ├── rock.png                 # Batu berlumut
-│       ├── tree.png                 # Pohon oak besar
-│       └── tree_small.png           # Pohon kecil
-├── data/
-│   └── dialogs.json                 # Database 25 dialog JSON
-├── scenes/
-│   └── main.tscn                    # Scene utama terintegrasi penuh
-├── scripts/
-│   ├── dialog_system.gd             # Typewriter dialog & portrait controller
-│   ├── escape_gate.gd               # Logika gerbang keluar & unlock check
-│   ├── game_manager.gd              # Autoload GameManager (State, Items, Audio cues)
-│   ├── interactable_object.gd       # Script objek interaktif (Pohon, Rumah, Batu)
-│   ├── item.gd                      # Script collectible Memory Fragment
-│   ├── main.gd                      # Controller level, HUD, Toast, & Pause Menu
-│   ├── npc_wanderer.gd              # Script AI wandering NPC tambahan
-│   └── player.gd                    # Player movement, dust particles, & footstep
-├── project.godot                    # Konfigurasi Godot 4 (Autoload & Main Scene)
-└── README.md
+### 🗺️ Satu Level Besar (Mini-World)
+- Map **2500×1900 piksel** yang bisa di-scroll ke segala arah.
+- **Sungai Pembatas**: Sungai horizontal membelah map Utara-Selatan. Hanya bisa dilewati melalui **dua jembatan** (Barat & Timur).
+- **5 zone** berbeda: Area Tengah, Desa Padat (NW), Hutan Lebat (NE), Zona Batu & Rawa (S), Sudut Terpencil (E/W).
+- Kaya dekorasi: rumah berpagar, mailbox, pepohonan lebat, semak-semak, batu, kolam lumpur rawa berbahaya.
+
+### 💎 Diamond/Gem System
+| Permata | Lokasi | Skor | Kesulitan |
+|-------|--------|------|-----------|
+| Gem 1 | Zone A — area terbuka dekat spawn | 100 | ⭐ |
+| Gem 2 | Zone A — halaman rumah depan | 100 | ⭐ |
+| Gem 3 | Zone B — belakang rumah desa (NW) | 100 | ⭐⭐ |
+| Gem 4 | Zone B — pekarangan pagar rumah B3 | 150 | ⭐⭐ |
+| Gem 5 | Zone C — tengah hutan lebat (NE) | 150 | ⭐⭐ |
+| Gem 6 | Zone C — ujung sempit hutan terhalang batu | 200 | ⭐⭐⭐ |
+| Gem 7 | Zone D — dekat kolam rawa berbahaya | 200 | ⭐⭐⭐ |
+| Gem 8 | Zone D — labirin bebatuan selatan | 200 | ⭐⭐⭐ |
+| Gem 9 | Zone E West — sudut terpencil barat (rare!) | 300 | ⭐⭐⭐⭐ |
+| Gem 10| Zone E East — sudut terpencil timur (rare!) | 300 | ⭐⭐⭐⭐ |
+
+### 👾 Enemy System (3 Tipe)
+- **Patrol Enemy (×3)**: Bergerak bolak-balik, menjaga persimpangan utama dan desa — 2 HP — +50 score
+- **Chaser Enemy (×2)**: Mengejar player jika masuk radius deteksi, menjaga jembatan keluar dan labirin batu — 2 HP — +75 score  
+- **Guardian Enemy (×2)**: Mengorbit permata langka di sudut terjauh, menyerang dengan charge kilat — 3 HP — +100 score
+
+### ⚔️ Combat System
+- **Tembak** ke 8 arah (arah terakhir gerak) menggunakan projectile berkilau cyan
+- Cooldown tembak: 0.32 detik
+- Enemy flash putih saat tertembak
+- Efek kematian enemy: spin + fade + partikel ledakan oranye
+
+### 💚 Player Health & Invulnerability
+- **3 nyawa** (ditampilkan sebagai icon hati)
+- Invulnerability 1.6 detik setelah terkena damage (karakter berkedip merah)
+- Kena damage memicu camera shake + flash layar merah
+
+### ⏱️ Timer & Score
+- **3 menit** (180 detik) untuk mengumpulkan seluruh permata
+- Warna timer dinamis: Hijau ➔ Kuning ➔ Merah berkedip (<30s)
+- Bonus score dari sisa waktu: `(sisa detik) × 10`
+- Floating score popup cyan (+100/150/200/300) muncul saat permata diambil
+
+### 🏆 HUD Arcade Retro
+```
+┌─────────────────────────────────────────┐
+│  SCORE    │  GEMS    │  TIME    │  LIFE  │
+│  012500   │  05/10   │  01:42   │  ❤❤❤  │
+└─────────────────────────────────────────┘
 ```
 
 ---
 
-## 🕹️ Kontrol Permainan
+## 🕹️ Kontrol
 
-| Tombol / Input | Aksi |
-| :--- | :--- |
-| **W, A, S, D** / **Tombol Panah** | Menggerakkan karakter NPC (Smooth Movement) |
-| **E** | Interaksi (Ambil Item / Periksa Pohon/Rumah / Bicara dengan NPC / Buka Gerbang) |
-| **Spasi / Enter / Klik Kiri** | Lanjut dialog / Fast-forward teks dialog |
-| **ESC** | Lewati dialog (saat dialog) / Buka Pause Menu (saat bermain) |
+| Tombol | Aksi |
+|--------|------|
+| **W / A / S / D** atau **Arrow Keys** | Gerak |
+| **SPACE** atau **Klik Kiri** | Tembak projectile |
+| **ESC** | Pause / Resume |
 
 ---
 
-## 🚀 Cara Menjalankan di Godot 4.x
+## 📁 Struktur Proyek
 
-1. Buka folder proyek ini di **Godot Engine 4 (versi 4.3 atau 4.7)**.
-2. Tekan **F5** (atau klik tombol **Play** di pojok kanan atas).
-3. Anda akan disambut monolog pembuka NPC. Kumpulkan ketiga **Memory Fragments** di sekitar desa untuk membuka gerbang dan kabur!
+```
+res://
+├── assets/
+│   ├── audio/
+│   │   ├── bgm_calm.wav           # BGM
+│   │   ├── sfx_collect.wav        # Permata diambil
+│   │   ├── sfx_footstep.wav       # Langkah kaki
+│   │   ├── sfx_shoot.wav          # Tembak
+│   │   ├── sfx_hit.wav            # Enemy kena tembak
+│   │   ├── sfx_enemy_die.wav      # Enemy mati
+│   │   ├── sfx_player_hurt.wav    # Player kena damage
+│   │   ├── sfx_level_complete.wav # Menang!
+│   │   └── sfx_game_over.wav      # Game Over
+│   └── sprites/
+│       ├── gem.png                # Permata collectible cyan
+│       ├── enemy_patrol.png       # Robot merah patrol
+│       ├── enemy_chaser.png       # Blob ungu pengejar
+│       ├── enemy_guardian.png     # Guardian emas penjaga
+│       ├── projectile.png         # Bola tembakan cyan
+│       ├── heart_full.png         # HUD hati penuh
+│       ├── heart_empty.png        # HUD hati kosong
+│       ├── bush.png               # Dekorasi semak
+│       ├── fence_h.png            # Pagar kayu
+│       ├── water_tile.png         # Air sungai/kolam rawa
+│       ├── player_idle.png        # Karakter player
+│       ├── house.png              # Bangunan
+│       ├── tree.png / tree_small.png # Pohon
+│       └── rock.png               # Batu
+├── scenes/
+│   └── main.tscn                  # Scene utama (satu level)
+├── scripts/
+│   ├── game_manager.gd            # State machine, timer, score, health
+│   ├── player.gd                  # Movement, attack, health, camera
+│   ├── projectile.gd              # Bola tembakan (spawned dinamis)
+│   ├── gem.gd                     # Permata collectible
+│   ├── enemy_patrol.gd            # AI patrol bolak-balik
+│   ├── enemy_chaser.gd            # AI chaser state machine
+│   ├── enemy_guardian.gd          # AI guardian + charge attack
+│   ├── danger_zone.gd             # Kolam rawa berbahaya
+│   └── main.gd                    # HUD controller + overlays
+└── project.godot                  # Godot 4.7 config
+```
+
+---
+
+## 🚀 Cara Menjalankan
+
+1. Buka folder proyek di **Godot Engine 4.7**
+2. Tunggu proses **import asset** selesai (sekitar 30 detik pertama kali)
+3. Tekan **F5** atau tombol **Play**
+4. Klik **START GAME** dari Main Menu
+5. Jelajahi map, temukan 10 permata sebelum waktu habis!

@@ -1,660 +1,1674 @@
-[gd_scene load_steps=28 format=3 uid="uid://b2k8y1m4v30qj"]
+[gd_scene format=3 uid="uid://b2k8y1m4v30qj"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ground_grass.png" id="2_grass"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ground_path.png" id="3_path"]
-[ext_resource type="Script" path="res://scripts/interactable_object.gd" id="4_interact"]
-[ext_resource type="Texture2D" path="res://assets/sprites/house.png" id="5_house"]
-[ext_resource type="Texture2D" path="res://assets/sprites/tree.png" id="6_tree"]
-[ext_resource type="Texture2D" path="res://assets/sprites/tree_small.png" id="7_tree_small"]
-[ext_resource type="Texture2D" path="res://assets/sprites/rock.png" id="8_rock"]
-[ext_resource type="Script" path="res://scripts/escape_gate.gd" id="9_gate"]
-[ext_resource type="Texture2D" path="res://assets/sprites/gate_closed.png" id="10_gate_closed"]
-[ext_resource type="Texture2D" path="res://assets/sprites/gate_open.png" id="11_gate_open"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx_gate_unlock.wav" id="12_sfx_unlock"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx_escape.wav" id="13_sfx_escape"]
-[ext_resource type="Script" path="res://scripts/item.gd" id="14_item"]
-[ext_resource type="Texture2D" path="res://assets/sprites/memory_fragment.png" id="15_fragment"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx_collect.wav" id="16_sfx_collect"]
-[ext_resource type="Script" path="res://scripts/npc_wanderer.gd" id="17_wanderer"]
-[ext_resource type="Texture2D" path="res://assets/sprites/npc_farmer.png" id="18_farmer"]
-[ext_resource type="Texture2D" path="res://assets/sprites/npc_villager.png" id="19_villager"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="20_player"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player_idle.png" id="21_player_idle"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx_footstep.wav" id="22_sfx_footstep"]
-[ext_resource type="Script" path="res://scripts/dialog_system.gd" id="23_dialog"]
-[ext_resource type="Texture2D" path="res://assets/sprites/portrait_npc.png" id="24_portrait"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx_dialog.wav" id="25_sfx_dialog"]
-[ext_resource type="Texture2D" path="res://assets/sprites/item_icon.png" id="26_item_icon"]
-[ext_resource type="AudioStream" path="res://assets/audio/bgm_calm.wav" id="27_bgm"]
+[ext_resource type="Script" uid="uid://ca62811qc85ve" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://ctq2kdwhduoau" path="res://scripts/player.gd" id="2_player"]
+[ext_resource type="Script" uid="uid://00egg00001" path="res://scripts/gem.gd" id="3_gem"]
+[ext_resource type="Script" uid="uid://00pat00003" path="res://scripts/enemy_patrol.gd" id="4_patrol"]
+[ext_resource type="Script" uid="uid://00chs00004" path="res://scripts/enemy_chaser.gd" id="5_chaser"]
+[ext_resource type="Script" uid="uid://00grd00005" path="res://scripts/enemy_guardian.gd" id="6_guardian"]
+[ext_resource type="Script" uid="uid://00dng00008" path="res://scripts/danger_zone.gd" id="7_danger"]
+[ext_resource type="Texture2D" uid="uid://bwujylrsu4bbv" path="res://assets/sprites/ground_grass.png" id="8_grass"]
+[ext_resource type="Texture2D" uid="uid://b4cr2gb0lgi36" path="res://assets/sprites/ground_path.png" id="9_path"]
+[ext_resource type="Texture2D" uid="uid://30j1vfqebr1d" path="res://assets/sprites/house.png" id="10_house"]
+[ext_resource type="Texture2D" uid="uid://ceh5k1oqr7hi4" path="res://assets/sprites/tree.png" id="11_tree"]
+[ext_resource type="Texture2D" uid="uid://ctssyfxmhv70o" path="res://assets/sprites/tree_small.png" id="12_tree_small"]
+[ext_resource type="Texture2D" uid="uid://b1bqbpasjlaha" path="res://assets/sprites/rock.png" id="13_rock"]
+[ext_resource type="Texture2D" uid="uid://lsu4qan4orte" path="res://assets/sprites/gem.png" id="14_gem_tex"]
+[ext_resource type="Texture2D" uid="uid://c5arp31yu345l" path="res://assets/sprites/enemy_patrol.png" id="15_patrol_tex"]
+[ext_resource type="Texture2D" uid="uid://coft8jua2kyl2" path="res://assets/sprites/enemy_chaser.png" id="16_chaser_tex"]
+[ext_resource type="Texture2D" uid="uid://nphjcaxkudhx" path="res://assets/sprites/enemy_guardian.png" id="17_guardian_tex"]
+[ext_resource type="Texture2D" uid="uid://bd0mouutpaqfg" path="res://assets/sprites/player_idle.png" id="18_player_tex"]
+[ext_resource type="Texture2D" uid="uid://qtrrg1c6lqc" path="res://assets/sprites/heart_full.png" id="19_heart_full"]
+[ext_resource type="Texture2D" uid="uid://q2abhb7ghn8t" path="res://assets/sprites/bush.png" id="21_bush"]
+[ext_resource type="Texture2D" uid="uid://dwsn7v5g35c0d" path="res://assets/sprites/water_tile.png" id="22_water"]
+[ext_resource type="Texture2D" uid="uid://6wfus3k2lduy" path="res://assets/sprites/fence_h.png" id="23_fence"]
+[ext_resource type="AudioStream" uid="uid://cm2qcqxyfu2gc" path="res://assets/audio/bgm_calm.wav" id="24_bgm"]
+[ext_resource type="AudioStream" uid="uid://ccdnu1h633x1i" path="res://assets/audio/sfx_footstep.wav" id="25_footstep"]
+[ext_resource type="AudioStream" uid="uid://c8006ym4ckc8e" path="res://assets/audio/sfx_collect.wav" id="26_collect"]
+[ext_resource type="AudioStream" uid="uid://2volvluv33yx" path="res://assets/audio/sfx_shoot.wav" id="27_shoot"]
+[ext_resource type="AudioStream" uid="uid://uduu6l40igh4" path="res://assets/audio/sfx_hit.wav" id="28_hit"]
+[ext_resource type="AudioStream" uid="uid://dmvg31ot4ag1l" path="res://assets/audio/sfx_enemy_die.wav" id="29_enemy_die"]
+[ext_resource type="AudioStream" uid="uid://2u80lh8kuftk" path="res://assets/audio/sfx_player_hurt.wav" id="30_hurt"]
+[ext_resource type="AudioStream" uid="uid://dmeswx80tbpkm" path="res://assets/audio/sfx_level_complete.wav" id="31_complete"]
+[ext_resource type="AudioStream" uid="uid://kivyk1m7nbkk" path="res://assets/audio/sfx_game_over.wav" id="32_gameover"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_house"]
-size = Vector2(80, 48)
+[sub_resource type="RectangleShape2D" id="Shape_WorldBoundH"]
+size = Vector2(2600, 50)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_house_interact"]
-radius = 65.0
+[sub_resource type="RectangleShape2D" id="Shape_WorldBoundV"]
+size = Vector2(50, 2100)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tree"]
+[sub_resource type="RectangleShape2D" id="Shape_RiverBlockerShort"]
+size = Vector2(710, 64)
+
+[sub_resource type="RectangleShape2D" id="Shape_RiverBlockerLong"]
+size = Vector2(920, 64)
+
+[sub_resource type="RectangleShape2D" id="Shape_House"]
+size = Vector2(80, 50)
+
+[sub_resource type="RectangleShape2D" id="Shape_Fence"]
+size = Vector2(64, 12)
+
+[sub_resource type="CircleShape2D" id="Shape_TreeLarge"]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tree_interact"]
-radius = 45.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_rock"]
-radius = 14.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_rock_interact"]
-radius = 35.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate"]
-size = Vector2(70, 70)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_item"]
-radius = 28.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_npc"]
+[sub_resource type="CircleShape2D" id="Shape_TreeSmall"]
 radius = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_npc_interact"]
-radius = 35.0
+[sub_resource type="CircleShape2D" id="Shape_Rock"]
+radius = 13.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
-size = Vector2(20, 24)
+[sub_resource type="CircleShape2D" id="Shape_Bush"]
+radius = 14.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
-bg_color = Color(0.12, 0.13, 0.18, 0.88)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.3, 0.7, 0.9, 0.8)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+[sub_resource type="RectangleShape2D" id="Shape_DangerSmall"]
+size = Vector2(130, 90)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toast"]
-bg_color = Color(0.1, 0.15, 0.22, 0.94)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.4, 0.85, 1, 0.9)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="RectangleShape2D" id="Shape_DangerLarge"]
+size = Vector2(180, 110)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause"]
-bg_color = Color(0.08, 0.09, 0.12, 0.95)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.6, 0.6, 0.7, 0.8)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="CircleShape2D" id="Shape_GemPickup"]
+radius = 22.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialog"]
-bg_color = Color(0.1, 0.11, 0.16, 0.96)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
+[sub_resource type="CircleShape2D" id="Shape_Enemy"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="Shape_EnemyHurt"]
+radius = 17.0
+
+[sub_resource type="RectangleShape2D" id="Shape_Player"]
+size = Vector2(18, 22)
+
+[sub_resource type="StyleBoxFlat" id="Style_HUDBar"]
+bg_color = Color(0.04, 0.04, 0.08, 0.92)
 border_width_bottom = 3
-border_color = Color(0.85, 0.7, 0.35, 1)
+border_color = Color(0.1, 0.75, 0.95, 1)
+
+[sub_resource type="StyleBoxFlat" id="Style_Overlay"]
+bg_color = Color(0.02, 0.04, 0.14, 0.95)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.1, 0.75, 0.95, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Main" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="Style_BtnPrimary"]
+bg_color = Color(0.15, 0.55, 0.15, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.3, 0.9, 0.3, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="Style_BtnRed"]
+bg_color = Color(0.55, 0.12, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.9, 0.3, 0.3, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="Style_BtnSecondary"]
+bg_color = Color(0.2, 0.2, 0.45, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.4, 0.4, 0.8, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Main" type="Node2D" unique_id=1998477678]
 script = ExtResource("1_main")
 
-[node name="Environment" type="Node2D" parent="."]
+[node name="WorldBounds" type="Node2D" parent="." unique_id=597852559]
 
-[node name="GroundGrass" type="TextureRect" parent="Environment"]
-offset_left = -1200.0
-offset_top = -1000.0
-offset_right = 1200.0
-offset_bottom = 1000.0
-texture = ExtResource("2_grass")
+[node name="WallTop" type="StaticBody2D" parent="WorldBounds" unique_id=1789663694]
+position = Vector2(0, -975)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/WallTop" unique_id=1493478026]
+shape = SubResource("Shape_WorldBoundH")
+
+[node name="WallBottom" type="StaticBody2D" parent="WorldBounds" unique_id=1224253556]
+position = Vector2(0, 975)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/WallBottom" unique_id=366712089]
+shape = SubResource("Shape_WorldBoundH")
+
+[node name="WallLeft" type="StaticBody2D" parent="WorldBounds" unique_id=1772457334]
+position = Vector2(-1275, 0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/WallLeft" unique_id=1401633353]
+shape = SubResource("Shape_WorldBoundV")
+
+[node name="WallRight" type="StaticBody2D" parent="WorldBounds" unique_id=1957386365]
+position = Vector2(1275, 0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/WallRight" unique_id=1022075306]
+shape = SubResource("Shape_WorldBoundV")
+
+[node name="Environment" type="Node2D" parent="." unique_id=1978844912]
+
+[node name="GroundGrass" type="TextureRect" parent="Environment" unique_id=1919905657]
+offset_left = -1250.0
+offset_top = -950.0
+offset_right = 1250.0
+offset_bottom = 950.0
+texture = ExtResource("8_grass")
 stretch_mode = 1
 
-[node name="PathHorizontal" type="TextureRect" parent="Environment"]
-offset_left = -400.0
-offset_top = -24.0
-offset_right = 450.0
-offset_bottom = 24.0
-texture = ExtResource("3_path")
+[node name="PathMainEW" type="TextureRect" parent="Environment" unique_id=1019882538]
+offset_left = -500.0
+offset_top = 75.0
+offset_right = 500.0
+offset_bottom = 125.0
+texture = ExtResource("9_path")
 stretch_mode = 1
 
-[node name="PathVertical" type="TextureRect" parent="Environment"]
-offset_left = -24.0
-offset_top = -200.0
-offset_right = 24.0
-offset_bottom = 220.0
-texture = ExtResource("3_path")
+[node name="PathMainNS" type="TextureRect" parent="Environment" unique_id=1216188357]
+offset_left = -25.0
+offset_top = -950.0
+offset_right = 25.0
+offset_bottom = 218.0
+texture = ExtResource("9_path")
 stretch_mode = 1
 
-[node name="PathToHouse" type="TextureRect" parent="Environment"]
-offset_left = 120.0
-offset_top = -120.0
-offset_right = 168.0
-offset_bottom = 0.0
-texture = ExtResource("3_path")
+[node name="PathDesa" type="TextureRect" parent="Environment" unique_id=373908763]
+offset_left = -800.0
+offset_top = -425.0
+offset_bottom = -375.0
+texture = ExtResource("9_path")
 stretch_mode = 1
 
-[node name="PathToInn" type="TextureRect" parent="Environment"]
-offset_left = -220.0
-offset_top = 0.0
-offset_right = -172.0
-offset_bottom = 100.0
-texture = ExtResource("3_path")
+[node name="PathHutan" type="TextureRect" parent="Environment" unique_id=934199582]
+offset_top = -320.0
+offset_right = 600.0
+offset_bottom = -280.0
+texture = ExtResource("9_path")
 stretch_mode = 1
 
-[node name="House1" type="StaticBody2D" parent="Environment"]
-position = Vector2(150, -150)
+[node name="PathMainS" type="TextureRect" parent="Environment" unique_id=54452685]
+offset_left = -500.0
+offset_top = 325.0
+offset_right = 500.0
+offset_bottom = 375.0
+texture = ExtResource("9_path")
+stretch_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/House1"]
-texture = ExtResource("5_house")
+[node name="PathSVert" type="TextureRect" parent="Environment" unique_id=604982404]
+offset_left = -25.0
+offset_top = 350.0
+offset_right = 25.0
+offset_bottom = 950.0
+texture = ExtResource("9_path")
+stretch_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/House1"]
-position = Vector2(0, 14)
-shape = SubResource("RectangleShape2D_house")
+[node name="RiverVisual" type="TextureRect" parent="Environment" unique_id=545759711]
+offset_left = -1250.0
+offset_top = 218.0
+offset_right = 1250.0
+offset_bottom = 282.0
+texture = ExtResource("22_water")
+stretch_mode = 1
 
-[node name="InteractArea" type="Area2D" parent="Environment/House1"]
-script = ExtResource("4_interact")
-object_name = "Rumah Kepala Desa"
-dialog_key = "interact_house"
+[node name="WestBridge" type="TextureRect" parent="Environment" unique_id=1220951757]
+offset_left = -540.0
+offset_top = 205.0
+offset_right = -460.0
+offset_bottom = 295.0
+texture = ExtResource("9_path")
+stretch_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/House1/InteractArea"]
-position = Vector2(0, 20)
-shape = SubResource("CircleShape2D_house_interact")
+[node name="EastBridge" type="TextureRect" parent="Environment" unique_id=1060123000]
+offset_left = 460.0
+offset_top = 205.0
+offset_right = 540.0
+offset_bottom = 295.0
+texture = ExtResource("9_path")
+stretch_mode = 1
 
-[node name="PromptLabel" type="Label" parent="Environment/House1/InteractArea"]
-visible = false
-offset_left = -90.0
-offset_top = -60.0
-offset_right = 90.0
-offset_bottom = -37.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "[E] Periksa Rumah"
-horizontal_alignment = 1
+[node name="RiverBlocker1" type="StaticBody2D" parent="Environment" unique_id=1412830165]
+position = Vector2(-895, 250)
+collision_mask = 0
 
-[node name="House2" type="StaticBody2D" parent="Environment"]
-position = Vector2(-220, 120)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RiverBlocker1" unique_id=1883626764]
+shape = SubResource("Shape_RiverBlockerShort")
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/House2"]
-texture = ExtResource("5_house")
+[node name="RiverBlocker2" type="StaticBody2D" parent="Environment" unique_id=1093816360]
+position = Vector2(0, 250)
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/House2"]
-position = Vector2(0, 14)
-shape = SubResource("RectangleShape2D_house")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RiverBlocker2" unique_id=1518360446]
+shape = SubResource("Shape_RiverBlockerLong")
 
-[node name="InteractArea" type="Area2D" parent="Environment/House2"]
-script = ExtResource("4_interact")
-object_name = "Kedai Desa"
-dialog_key = "interact_house"
+[node name="RiverBlocker3" type="StaticBody2D" parent="Environment" unique_id=360478213]
+position = Vector2(895, 250)
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/House2/InteractArea"]
-position = Vector2(0, 20)
-shape = SubResource("CircleShape2D_house_interact")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RiverBlocker3" unique_id=1494573239]
+shape = SubResource("Shape_RiverBlockerShort")
 
-[node name="PromptLabel" type="Label" parent="Environment/House2/InteractArea"]
-visible = false
-offset_left = -90.0
-offset_top = -60.0
-offset_right = 90.0
-offset_bottom = -37.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "[E] Periksa Kedai"
-horizontal_alignment = 1
+[node name="HouseB1" type="StaticBody2D" parent="Environment" unique_id=501770968]
+position = Vector2(-680, -500)
+collision_mask = 0
 
-[node name="Tree1" type="StaticBody2D" parent="Environment"]
-position = Vector2(-120, -180)
+[node name="Sprite2D" type="Sprite2D" parent="Environment/HouseB1" unique_id=653673113]
+texture = ExtResource("10_house")
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Tree1"]
-position = Vector2(0, -25)
-texture = ExtResource("6_tree")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/HouseB1" unique_id=363849417]
+position = Vector2(0, 12)
+shape = SubResource("Shape_House")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree1"]
-shape = SubResource("CircleShape2D_tree")
+[node name="HouseB2" type="StaticBody2D" parent="Environment" unique_id=1412563216]
+position = Vector2(-480, -500)
+collision_mask = 0
 
-[node name="InteractArea" type="Area2D" parent="Environment/Tree1"]
-script = ExtResource("4_interact")
-object_name = "Pohon Rindang"
-dialog_key = "interact_tree"
+[node name="Sprite2D" type="Sprite2D" parent="Environment/HouseB2" unique_id=1654110187]
+texture = ExtResource("10_house")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree1/InteractArea"]
-shape = SubResource("CircleShape2D_tree_interact")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/HouseB2" unique_id=1529599482]
+position = Vector2(0, 12)
+shape = SubResource("Shape_House")
 
-[node name="PromptLabel" type="Label" parent="Environment/Tree1/InteractArea"]
-visible = false
-offset_left = -80.0
-offset_top = -80.0
-offset_right = 80.0
-offset_bottom = -57.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "[E] Periksa Pohon"
-horizontal_alignment = 1
+[node name="HouseB3" type="StaticBody2D" parent="Environment" unique_id=506612599]
+position = Vector2(-300, -500)
+collision_mask = 0
 
-[node name="Tree2" type="StaticBody2D" parent="Environment"]
-position = Vector2(300, -120)
+[node name="Sprite2D" type="Sprite2D" parent="Environment/HouseB3" unique_id=267656269]
+texture = ExtResource("10_house")
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Tree2"]
-position = Vector2(0, -25)
-texture = ExtResource("6_tree")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/HouseB3" unique_id=2126656086]
+position = Vector2(0, 12)
+shape = SubResource("Shape_House")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree2"]
-shape = SubResource("CircleShape2D_tree")
+[node name="Mailbox1" type="Sprite2D" parent="Environment" unique_id=1415274713]
+position = Vector2(-730, -450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_tree_small")
 
-[node name="Tree3" type="StaticBody2D" parent="Environment"]
-position = Vector2(-320, -80)
+[node name="Mailbox2" type="Sprite2D" parent="Environment" unique_id=1348250888]
+position = Vector2(-530, -450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_tree_small")
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Tree3"]
+[node name="FenceDesa1" type="StaticBody2D" parent="Environment" unique_id=807049825]
+position = Vector2(-750, -430)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/FenceDesa1" unique_id=1265604917]
+texture = ExtResource("23_fence")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/FenceDesa1" unique_id=412285910]
+shape = SubResource("Shape_Fence")
+
+[node name="FenceDesa2" type="StaticBody2D" parent="Environment" unique_id=1638904620]
+position = Vector2(-610, -430)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/FenceDesa2" unique_id=856910325]
+texture = ExtResource("23_fence")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/FenceDesa2" unique_id=45350419]
+shape = SubResource("Shape_Fence")
+
+[node name="FenceDesa3" type="StaticBody2D" parent="Environment" unique_id=607570828]
+position = Vector2(-550, -430)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/FenceDesa3" unique_id=1154765977]
+texture = ExtResource("23_fence")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/FenceDesa3" unique_id=1336661381]
+shape = SubResource("Shape_Fence")
+
+[node name="FenceDesa5" type="StaticBody2D" parent="Environment" unique_id=1982903417]
+position = Vector2(-550, -430)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/FenceDesa5" unique_id=1754790542]
+texture = ExtResource("23_fence")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/FenceDesa5" unique_id=499552297]
+shape = SubResource("Shape_Fence")
+
+[node name="FenceDesa4" type="StaticBody2D" parent="Environment" unique_id=1174810420]
+position = Vector2(-410, -430)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/FenceDesa4" unique_id=929658214]
+texture = ExtResource("23_fence")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/FenceDesa4" unique_id=567506460]
+shape = SubResource("Shape_Fence")
+
+[node name="HouseA" type="StaticBody2D" parent="Environment" unique_id=485239640]
+position = Vector2(-180, 180)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/HouseA" unique_id=76566142]
+texture = ExtResource("10_house")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/HouseA" unique_id=117854717]
+position = Vector2(0, 12)
+shape = SubResource("Shape_House")
+
+[node name="FenceA" type="StaticBody2D" parent="Environment" unique_id=733095061]
+position = Vector2(-180, 240)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/FenceA" unique_id=253313328]
+texture = ExtResource("23_fence")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/FenceA" unique_id=594552302]
+shape = SubResource("Shape_Fence")
+
+[node name="TreeC1" type="StaticBody2D" parent="Environment" unique_id=982980117]
+position = Vector2(400, -500)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC1" unique_id=1262517621]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC1" unique_id=1155489325]
+shape = SubResource("Shape_TreeLarge")
+
+[node name="TreeC2" type="StaticBody2D" parent="Environment" unique_id=744504753]
+position = Vector2(450, -580)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC2" unique_id=1894542764]
 position = Vector2(0, -20)
-texture = ExtResource("7_tree_small")
+texture = ExtResource("12_tree_small")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree3"]
-shape = SubResource("CircleShape2D_tree")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC2" unique_id=1350971139]
+shape = SubResource("Shape_TreeSmall")
 
-[node name="Tree4" type="StaticBody2D" parent="Environment"]
-position = Vector2(120, 200)
+[node name="TreeC3" type="StaticBody2D" parent="Environment" unique_id=538792569]
+position = Vector2(520, -510)
+collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Tree4"]
-position = Vector2(0, -25)
-texture = ExtResource("6_tree")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC3" unique_id=1875063596]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree4"]
-shape = SubResource("CircleShape2D_tree")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC3" unique_id=554594571]
+shape = SubResource("Shape_TreeLarge")
 
-[node name="Tree5" type="StaticBody2D" parent="Environment"]
-position = Vector2(320, 180)
+[node name="TreeC4" type="StaticBody2D" parent="Environment" unique_id=1156603404]
+position = Vector2(590, -570)
+collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Tree5"]
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC4" unique_id=1588173451]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC4" unique_id=1931644420]
+shape = SubResource("Shape_TreeLarge")
+
+[node name="TreeC5" type="StaticBody2D" parent="Environment" unique_id=1205863640]
+position = Vector2(660, -500)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC5" unique_id=524096187]
 position = Vector2(0, -20)
-texture = ExtResource("7_tree_small")
+texture = ExtResource("12_tree_small")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Tree5"]
-shape = SubResource("CircleShape2D_tree")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC5" unique_id=1691641998]
+shape = SubResource("Shape_TreeSmall")
 
-[node name="Rock1" type="StaticBody2D" parent="Environment"]
-position = Vector2(-80, 160)
+[node name="TreeC6" type="StaticBody2D" parent="Environment" unique_id=1917536496]
+position = Vector2(720, -580)
+collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Rock1"]
-texture = ExtResource("8_rock")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC6" unique_id=934920071]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Rock1"]
-shape = SubResource("CircleShape2D_rock")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC6" unique_id=258658373]
+shape = SubResource("Shape_TreeLarge")
 
-[node name="InteractArea" type="Area2D" parent="Environment/Rock1"]
-script = ExtResource("4_interact")
-object_name = "Batu Lumut"
-dialog_key = "interact_rock"
+[node name="TreeC7" type="StaticBody2D" parent="Environment" unique_id=1570903966]
+position = Vector2(800, -500)
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Rock1/InteractArea"]
-shape = SubResource("CircleShape2D_rock_interact")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC7" unique_id=954310256]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
 
-[node name="PromptLabel" type="Label" parent="Environment/Rock1/InteractArea"]
-visible = false
-offset_left = -70.0
-offset_top = -45.0
-offset_right = 70.0
-offset_bottom = -22.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "[E] Periksa Batu"
-horizontal_alignment = 1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC7" unique_id=930317005]
+shape = SubResource("Shape_TreeLarge")
 
-[node name="Rock2" type="StaticBody2D" parent="Environment"]
-position = Vector2(250, 60)
+[node name="TreeC8" type="StaticBody2D" parent="Environment" unique_id=30021616]
+position = Vector2(860, -580)
+collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Rock2"]
-texture = ExtResource("8_rock")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC8" unique_id=26447902]
+position = Vector2(0, -20)
+texture = ExtResource("12_tree_small")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Rock2"]
-shape = SubResource("CircleShape2D_rock")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC8" unique_id=1095544398]
+shape = SubResource("Shape_TreeSmall")
 
-[node name="EscapeGate" type="Area2D" parent="Environment"]
-position = Vector2(440, 0)
-script = ExtResource("9_gate")
-tex_closed = ExtResource("10_gate_closed")
-tex_open = ExtResource("11_gate_open")
+[node name="TreeC9" type="StaticBody2D" parent="Environment" unique_id=2123368870]
+position = Vector2(450, -380)
+collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/EscapeGate"]
-texture = ExtResource("10_gate_closed")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC9" unique_id=1182914213]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/EscapeGate"]
-shape = SubResource("RectangleShape2D_gate")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC9" unique_id=496881446]
+shape = SubResource("Shape_TreeLarge")
 
-[node name="AuraParticles" type="CPUParticles2D" parent="Environment/EscapeGate"]
-amount = 16
-lifetime = 1.2
+[node name="TreeC10" type="StaticBody2D" parent="Environment" unique_id=1507152802]
+position = Vector2(550, -380)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC10" unique_id=1110006588]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC10" unique_id=184058931]
+shape = SubResource("Shape_TreeLarge")
+
+[node name="TreeC11" type="StaticBody2D" parent="Environment" unique_id=22667239]
+position = Vector2(700, -380)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC11" unique_id=47984719]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC11" unique_id=1077498357]
+shape = SubResource("Shape_TreeLarge")
+
+[node name="TreeC12" type="StaticBody2D" parent="Environment" unique_id=1244061164]
+position = Vector2(800, -380)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC12" unique_id=579397068]
+position = Vector2(0, -20)
+texture = ExtResource("12_tree_small")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC12" unique_id=186840486]
+shape = SubResource("Shape_TreeSmall")
+
+[node name="TreeC13" type="StaticBody2D" parent="Environment" unique_id=2010894653]
+position = Vector2(400, -220)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC13" unique_id=1681350201]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC13" unique_id=54482166]
+shape = SubResource("Shape_TreeLarge")
+
+[node name="TreeC14" type="StaticBody2D" parent="Environment" unique_id=1656992921]
+position = Vector2(500, -220)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC14" unique_id=1095224391]
+position = Vector2(0, -20)
+texture = ExtResource("12_tree_small")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC14" unique_id=94910923]
+shape = SubResource("Shape_TreeSmall")
+
+[node name="TreeC15" type="StaticBody2D" parent="Environment" unique_id=1529579450]
+position = Vector2(600, -220)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC15" unique_id=1346440002]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC15" unique_id=163923546]
+shape = SubResource("Shape_TreeLarge")
+
+[node name="TreeC16" type="StaticBody2D" parent="Environment" unique_id=823583220]
+position = Vector2(750, -220)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TreeC16" unique_id=2026295607]
+position = Vector2(0, -24)
+texture = ExtResource("11_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TreeC16" unique_id=802749689]
+shape = SubResource("Shape_TreeLarge")
+
+[node name="RockD1" type="StaticBody2D" parent="Environment" unique_id=2067177442]
+position = Vector2(-300, 450)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RockD1" unique_id=669464985]
+texture = ExtResource("13_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RockD1" unique_id=103528449]
+shape = SubResource("Shape_Rock")
+
+[node name="RockD2" type="StaticBody2D" parent="Environment" unique_id=1999335858]
+position = Vector2(-150, 450)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RockD2" unique_id=2122718350]
+texture = ExtResource("13_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RockD2" unique_id=1688494496]
+shape = SubResource("Shape_Rock")
+
+[node name="RockD3" type="StaticBody2D" parent="Environment" unique_id=1208116148]
+position = Vector2(150, 450)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RockD3" unique_id=327825006]
+texture = ExtResource("13_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RockD3" unique_id=217856708]
+shape = SubResource("Shape_Rock")
+
+[node name="RockD4" type="StaticBody2D" parent="Environment" unique_id=1915232451]
+position = Vector2(300, 450)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RockD4" unique_id=1897121200]
+texture = ExtResource("13_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RockD4" unique_id=556698321]
+shape = SubResource("Shape_Rock")
+
+[node name="RockD5" type="StaticBody2D" parent="Environment" unique_id=518932620]
+position = Vector2(-220, 580)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RockD5" unique_id=1950410651]
+texture = ExtResource("13_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RockD5" unique_id=487407258]
+shape = SubResource("Shape_Rock")
+
+[node name="RockD6" type="StaticBody2D" parent="Environment" unique_id=1571001720]
+position = Vector2(220, 580)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RockD6" unique_id=863315663]
+texture = ExtResource("13_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RockD6" unique_id=1302986648]
+shape = SubResource("Shape_Rock")
+
+[node name="RockD7" type="StaticBody2D" parent="Environment" unique_id=2108465076]
+position = Vector2(-100, 700)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RockD7" unique_id=555646199]
+texture = ExtResource("13_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RockD7" unique_id=1492211978]
+shape = SubResource("Shape_Rock")
+
+[node name="RockD8" type="StaticBody2D" parent="Environment" unique_id=1634931718]
+position = Vector2(100, 700)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RockD8" unique_id=1801534553]
+texture = ExtResource("13_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RockD8" unique_id=782589307]
+shape = SubResource("Shape_Rock")
+
+[node name="RockD9" type="StaticBody2D" parent="Environment" unique_id=1070272611]
+position = Vector2(-300, 700)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RockD9" unique_id=660085161]
+texture = ExtResource("13_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RockD9" unique_id=893489210]
+shape = SubResource("Shape_Rock")
+
+[node name="RockD10" type="StaticBody2D" parent="Environment" unique_id=841239803]
+position = Vector2(300, 700)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RockD10" unique_id=1363590090]
+texture = ExtResource("13_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RockD10" unique_id=1504501108]
+shape = SubResource("Shape_Rock")
+
+[node name="Bush1" type="StaticBody2D" parent="Environment" unique_id=1639026896]
+position = Vector2(-600, -320)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Bush1" unique_id=1407008347]
+texture = ExtResource("21_bush")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Bush1" unique_id=176338212]
+shape = SubResource("Shape_Bush")
+
+[node name="Bush2" type="StaticBody2D" parent="Environment" unique_id=97554430]
+position = Vector2(-400, -320)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Bush2" unique_id=343218832]
+texture = ExtResource("21_bush")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Bush2" unique_id=1563402375]
+shape = SubResource("Shape_Bush")
+
+[node name="Bush3" type="StaticBody2D" parent="Environment" unique_id=262983947]
+position = Vector2(650, -360)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Bush3" unique_id=1542897199]
+texture = ExtResource("21_bush")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Bush3" unique_id=1471681708]
+shape = SubResource("Shape_Bush")
+
+[node name="Bush4" type="StaticBody2D" parent="Environment" unique_id=906095639]
+position = Vector2(100, 150)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Bush4" unique_id=1572093723]
+texture = ExtResource("21_bush")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Bush4" unique_id=1849164484]
+shape = SubResource("Shape_Bush")
+
+[node name="DangerZones" type="Node2D" parent="." unique_id=1939563129]
+
+[node name="Swamp1" type="Area2D" parent="DangerZones" unique_id=247601602]
+position = Vector2(-350, 550)
+script = ExtResource("7_danger")
+damage_interval = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="DangerZones/Swamp1" unique_id=1449884235]
+modulate = Color(0.2, 0.8, 0.4, 0.85)
+scale = Vector2(2, 1.4)
+texture = ExtResource("22_water")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZones/Swamp1" unique_id=1062433397]
+shape = SubResource("Shape_DangerSmall")
+
+[node name="Swamp2" type="Area2D" parent="DangerZones" unique_id=412399245]
+position = Vector2(350, 550)
+script = ExtResource("7_danger")
+damage_interval = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="DangerZones/Swamp2" unique_id=461398738]
+modulate = Color(0.2, 0.8, 0.4, 0.85)
+scale = Vector2(2, 1.4)
+texture = ExtResource("22_water")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZones/Swamp2" unique_id=1335529600]
+shape = SubResource("Shape_DangerSmall")
+
+[node name="Swamp3" type="Area2D" parent="DangerZones" unique_id=537684267]
+position = Vector2(0, 750)
+script = ExtResource("7_danger")
+damage_interval = 0.85
+
+[node name="Sprite2D" type="Sprite2D" parent="DangerZones/Swamp3" unique_id=1693038655]
+modulate = Color(0.1, 0.7, 0.3, 0.85)
+scale = Vector2(2.8, 1.7)
+texture = ExtResource("22_water")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZones/Swamp3" unique_id=1401816189]
+shape = SubResource("Shape_DangerLarge")
+
+[node name="Gems" type="Node2D" parent="." unique_id=150210070]
+
+[node name="Gem1" type="Area2D" parent="Gems" unique_id=640962124]
+position = Vector2(100, 180)
+script = ExtResource("3_gem")
+
+[node name="Sprite2D" type="Sprite2D" parent="Gems/Gem1" unique_id=55265437]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("14_gem_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Gem1" unique_id=1498835627]
+shape = SubResource("Shape_GemPickup")
+
+[node name="SparkleParticles" type="CPUParticles2D" parent="Gems/Gem1" unique_id=1159549852]
 emission_shape = 1
-emission_sphere_radius = 24.0
-gravity = Vector2(0, -30)
+emission_sphere_radius = 10.0
+gravity = Vector2(0, -20)
 scale_amount_min = 2.0
 scale_amount_max = 4.0
-color = Color(0.9, 0.4, 0.3, 0.7)
+color = Color(0.2, 0.85, 1, 0.9)
 
-[node name="PromptLabel" type="Label" parent="Environment/EscapeGate"]
-visible = false
-offset_left = -110.0
-offset_top = -55.0
-offset_right = 110.0
-offset_bottom = -32.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "Gerbang Terkunci! (0/3)"
-horizontal_alignment = 1
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="Gems/Gem1" unique_id=1725228014]
+stream = ExtResource("26_collect")
+volume_db = 2.0
 
-[node name="SfxUnlock" type="AudioStreamPlayer2D" parent="Environment/EscapeGate"]
-stream = ExtResource("12_sfx_unlock")
+[node name="Gem2" type="Area2D" parent="Gems" unique_id=573840751]
+position = Vector2(-180, 120)
+script = ExtResource("3_gem")
+gem_id = 2
 
-[node name="SfxEscape" type="AudioStreamPlayer2D" parent="Environment/EscapeGate"]
-stream = ExtResource("13_sfx_escape")
+[node name="Sprite2D" type="Sprite2D" parent="Gems/Gem2" unique_id=1551380528]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("14_gem_tex")
 
-[node name="ItemFragment1" type="Area2D" parent="."]
-position = Vector2(-160, -130)
-script = ExtResource("14_item")
-item_index = 1
-dialog_key = "item_fragment_1"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Gem2" unique_id=924316851]
+shape = SubResource("Shape_GemPickup")
 
-[node name="Sprite2D" type="Sprite2D" parent="ItemFragment1"]
-texture = ExtResource("15_fragment")
+[node name="SparkleParticles" type="CPUParticles2D" parent="Gems/Gem2" unique_id=793650333]
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector2(0, -20)
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0.2, 0.85, 1, 0.9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemFragment1"]
-shape = SubResource("CircleShape2D_item")
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="Gems/Gem2" unique_id=54111483]
+stream = ExtResource("26_collect")
+volume_db = 2.0
 
-[node name="SparkleParticles" type="CPUParticles2D" parent="ItemFragment1"]
-amount = 8
-lifetime = 1.0
+[node name="Gem3" type="Area2D" parent="Gems" unique_id=130457657]
+position = Vector2(-650, -560)
+script = ExtResource("3_gem")
+gem_id = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Gems/Gem3" unique_id=146860954]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("14_gem_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Gem3" unique_id=124753761]
+shape = SubResource("Shape_GemPickup")
+
+[node name="SparkleParticles" type="CPUParticles2D" parent="Gems/Gem3" unique_id=1266318672]
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector2(0, -20)
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0.2, 0.85, 1, 0.9)
+
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="Gems/Gem3" unique_id=619890115]
+stream = ExtResource("26_collect")
+volume_db = 2.0
+
+[node name="Gem4" type="Area2D" parent="Gems" unique_id=344350353]
+position = Vector2(-300, -560)
+script = ExtResource("3_gem")
+gem_score_value = 150
+gem_id = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Gems/Gem4" unique_id=1682257117]
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("14_gem_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Gem4" unique_id=495929303]
+shape = SubResource("Shape_GemPickup")
+
+[node name="SparkleParticles" type="CPUParticles2D" parent="Gems/Gem4" unique_id=1683585131]
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector2(0, -20)
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0.2, 0.85, 1, 0.9)
+
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="Gems/Gem4" unique_id=349089345]
+stream = ExtResource("26_collect")
+volume_db = 2.0
+
+[node name="Gem5" type="Area2D" parent="Gems" unique_id=286837231]
+position = Vector2(650, -320)
+script = ExtResource("3_gem")
+gem_score_value = 150
+gem_id = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Gems/Gem5" unique_id=1642315568]
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("14_gem_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Gem5" unique_id=1662340909]
+shape = SubResource("Shape_GemPickup")
+
+[node name="SparkleParticles" type="CPUParticles2D" parent="Gems/Gem5" unique_id=1753642406]
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector2(0, -20)
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0.2, 0.85, 1, 0.9)
+
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="Gems/Gem5" unique_id=1082180775]
+stream = ExtResource("26_collect")
+volume_db = 2.0
+
+[node name="Gem6" type="Area2D" parent="Gems" unique_id=349144542]
+position = Vector2(820, -500)
+script = ExtResource("3_gem")
+gem_score_value = 200
+gem_id = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="Gems/Gem6" unique_id=1668724862]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_gem_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Gem6" unique_id=422187220]
+shape = SubResource("Shape_GemPickup")
+
+[node name="SparkleParticles" type="CPUParticles2D" parent="Gems/Gem6" unique_id=2143906855]
 emission_shape = 1
 emission_sphere_radius = 12.0
-gravity = Vector2(0, -15)
-scale_amount_min = 2.0
-scale_amount_max = 3.0
-color = Color(0.4, 0.9, 1, 0.8)
+gravity = Vector2(0, -25)
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(0.1, 0.9, 1, 1)
 
-[node name="PromptLabel" type="Label" parent="ItemFragment1"]
-visible = false
-offset_left = -110.0
-offset_top = -38.0
-offset_right = 110.0
-offset_bottom = -15.0
-theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "[E] Ambil Memory Fragment #1"
-horizontal_alignment = 1
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="Gems/Gem6" unique_id=1257767902]
+stream = ExtResource("26_collect")
+volume_db = 2.0
 
-[node name="SfxCollect" type="AudioStreamPlayer2D" parent="ItemFragment1"]
-stream = ExtResource("16_sfx_collect")
+[node name="Gem7" type="Area2D" parent="Gems" unique_id=532765310]
+position = Vector2(250, 600)
+script = ExtResource("3_gem")
+gem_score_value = 200
+gem_id = 7
 
-[node name="ItemFragment2" type="Area2D" parent="."]
-position = Vector2(170, 160)
-script = ExtResource("14_item")
-item_index = 2
-dialog_key = "item_fragment_2"
+[node name="Sprite2D" type="Sprite2D" parent="Gems/Gem7" unique_id=2053907853]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_gem_tex")
 
-[node name="Sprite2D" type="Sprite2D" parent="ItemFragment2"]
-texture = ExtResource("15_fragment")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Gem7" unique_id=67910736]
+shape = SubResource("Shape_GemPickup")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemFragment2"]
-shape = SubResource("CircleShape2D_item")
-
-[node name="SparkleParticles" type="CPUParticles2D" parent="ItemFragment2"]
-amount = 8
-lifetime = 1.0
+[node name="SparkleParticles" type="CPUParticles2D" parent="Gems/Gem7" unique_id=373118065]
 emission_shape = 1
 emission_sphere_radius = 12.0
-gravity = Vector2(0, -15)
-scale_amount_min = 2.0
-scale_amount_max = 3.0
-color = Color(0.4, 0.9, 1, 0.8)
+gravity = Vector2(0, -25)
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(0.1, 0.9, 1, 1)
 
-[node name="PromptLabel" type="Label" parent="ItemFragment2"]
-visible = false
-offset_left = -110.0
-offset_top = -38.0
-offset_right = 110.0
-offset_bottom = -15.0
-theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "[E] Ambil Memory Fragment #2"
-horizontal_alignment = 1
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="Gems/Gem7" unique_id=812502804]
+stream = ExtResource("26_collect")
+volume_db = 2.0
 
-[node name="SfxCollect" type="AudioStreamPlayer2D" parent="ItemFragment2"]
-stream = ExtResource("16_sfx_collect")
+[node name="Gem8" type="Area2D" parent="Gems" unique_id=892078068]
+position = Vector2(-250, 720)
+script = ExtResource("3_gem")
+gem_score_value = 200
+gem_id = 8
 
-[node name="ItemFragment3" type="Area2D" parent="."]
-position = Vector2(-80, 210)
-script = ExtResource("14_item")
-item_index = 3
-dialog_key = "item_fragment_3"
+[node name="Sprite2D" type="Sprite2D" parent="Gems/Gem8" unique_id=464739188]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_gem_tex")
 
-[node name="Sprite2D" type="Sprite2D" parent="ItemFragment3"]
-texture = ExtResource("15_fragment")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Gem8" unique_id=1151231908]
+shape = SubResource("Shape_GemPickup")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemFragment3"]
-shape = SubResource("CircleShape2D_item")
-
-[node name="SparkleParticles" type="CPUParticles2D" parent="ItemFragment3"]
-amount = 8
-lifetime = 1.0
+[node name="SparkleParticles" type="CPUParticles2D" parent="Gems/Gem8" unique_id=1135908764]
 emission_shape = 1
 emission_sphere_radius = 12.0
-gravity = Vector2(0, -15)
-scale_amount_min = 2.0
-scale_amount_max = 3.0
-color = Color(0.4, 0.9, 1, 0.8)
+gravity = Vector2(0, -25)
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(0.1, 0.9, 1, 1)
 
-[node name="PromptLabel" type="Label" parent="ItemFragment3"]
-visible = false
-offset_left = -110.0
-offset_top = -38.0
-offset_right = 110.0
-offset_bottom = -15.0
-theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "[E] Ambil Memory Fragment #3"
-horizontal_alignment = 1
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="Gems/Gem8" unique_id=1222387513]
+stream = ExtResource("26_collect")
+volume_db = 2.0
 
-[node name="SfxCollect" type="AudioStreamPlayer2D" parent="ItemFragment3"]
-stream = ExtResource("16_sfx_collect")
+[node name="Gem9" type="Area2D" parent="Gems" unique_id=379661172]
+position = Vector2(-1050, 500)
+script = ExtResource("3_gem")
+gem_score_value = 300
+gem_id = 9
 
-[node name="NPCFarmer" type="CharacterBody2D" parent="."]
-position = Vector2(180, -60)
-script = ExtResource("17_wanderer")
-npc_name = "Pak Tani"
-dialog_key = "npc_farmer"
-wander_radius = 50.0
+[node name="Sprite2D" type="Sprite2D" parent="Gems/Gem9" unique_id=1515825887]
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("14_gem_tex")
 
-[node name="Sprite2D" type="Sprite2D" parent="NPCFarmer"]
-texture = ExtResource("18_farmer")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Gem9" unique_id=1115037348]
+shape = SubResource("Shape_GemPickup")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCFarmer"]
-shape = SubResource("CircleShape2D_npc")
+[node name="SparkleParticles" type="CPUParticles2D" parent="Gems/Gem9" unique_id=205022670]
+emission_shape = 1
+emission_sphere_radius = 14.0
+gravity = Vector2(0, -30)
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color = Color(1, 0.3, 0.9, 0.9)
 
-[node name="InteractArea" type="Area2D" parent="NPCFarmer"]
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="Gems/Gem9" unique_id=1500004027]
+stream = ExtResource("26_collect")
+volume_db = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCFarmer/InteractArea"]
-shape = SubResource("CircleShape2D_npc_interact")
+[node name="Gem10" type="Area2D" parent="Gems" unique_id=52438762]
+position = Vector2(1050, 500)
+script = ExtResource("3_gem")
+gem_score_value = 300
+gem_id = 10
 
-[node name="PromptLabel" type="Label" parent="NPCFarmer"]
-visible = false
-offset_left = -50.0
-offset_top = -35.0
-offset_right = 50.0
-offset_bottom = -12.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "[E] Bicara"
-horizontal_alignment = 1
+[node name="Sprite2D" type="Sprite2D" parent="Gems/Gem10" unique_id=532556205]
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("14_gem_tex")
 
-[node name="NPCVillager" type="CharacterBody2D" parent="."]
-position = Vector2(-150, 60)
-script = ExtResource("17_wanderer")
-npc_name = "Warga Desa"
-dialog_key = "npc_villager"
-wander_radius = 60.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Gem10" unique_id=1948497289]
+shape = SubResource("Shape_GemPickup")
 
-[node name="Sprite2D" type="Sprite2D" parent="NPCVillager"]
-texture = ExtResource("19_villager")
+[node name="SparkleParticles" type="CPUParticles2D" parent="Gems/Gem10" unique_id=1183345406]
+emission_shape = 1
+emission_sphere_radius = 14.0
+gravity = Vector2(0, -30)
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color = Color(1, 0.3, 0.9, 0.9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCVillager"]
-shape = SubResource("CircleShape2D_npc")
+[node name="SfxCollect" type="AudioStreamPlayer2D" parent="Gems/Gem10" unique_id=386840564]
+stream = ExtResource("26_collect")
+volume_db = 2.0
 
-[node name="InteractArea" type="Area2D" parent="NPCVillager"]
+[node name="Enemies" type="Node2D" parent="." unique_id=859531722]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCVillager/InteractArea"]
-shape = SubResource("CircleShape2D_npc_interact")
+[node name="Patrol1" type="CharacterBody2D" parent="Enemies" unique_id=128034354]
+position = Vector2(0, -100)
+collision_layer = 4
+script = ExtResource("4_patrol")
+patrol_distance = 180.0
+move_speed = 70.0
 
-[node name="PromptLabel" type="Label" parent="NPCVillager"]
-visible = false
-offset_left = -50.0
-offset_top = -35.0
-offset_right = 50.0
-offset_bottom = -12.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "[E] Bicara"
-horizontal_alignment = 1
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Patrol1" unique_id=891974207]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("15_patrol_tex")
 
-[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(0, 0)
-script = ExtResource("20_player")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Patrol1" unique_id=669027653]
+position = Vector2(0, 4)
+shape = SubResource("Shape_Enemy")
 
-[node name="DustParticles" type="CPUParticles2D" parent="Player"]
+[node name="HurtArea" type="Area2D" parent="Enemies/Patrol1" unique_id=1360588365]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Patrol1/HurtArea" unique_id=462185902]
+shape = SubResource("Shape_EnemyHurt")
+
+[node name="SfxHit" type="AudioStreamPlayer2D" parent="Enemies/Patrol1" unique_id=1574754246]
+stream = ExtResource("28_hit")
+
+[node name="SfxDie" type="AudioStreamPlayer2D" parent="Enemies/Patrol1" unique_id=1154422159]
+stream = ExtResource("29_enemy_die")
+
+[node name="Patrol2" type="CharacterBody2D" parent="Enemies" unique_id=906473562]
+position = Vector2(-480, -360)
+collision_layer = 4
+script = ExtResource("4_patrol")
+patrol_distance = 180.0
+move_speed = 60.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Patrol2" unique_id=273316857]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("15_patrol_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Patrol2" unique_id=297158859]
+position = Vector2(0, 4)
+shape = SubResource("Shape_Enemy")
+
+[node name="HurtArea" type="Area2D" parent="Enemies/Patrol2" unique_id=1454241842]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Patrol2/HurtArea" unique_id=685923077]
+shape = SubResource("Shape_EnemyHurt")
+
+[node name="SfxHit" type="AudioStreamPlayer2D" parent="Enemies/Patrol2" unique_id=842053136]
+stream = ExtResource("28_hit")
+
+[node name="SfxDie" type="AudioStreamPlayer2D" parent="Enemies/Patrol2" unique_id=1896021187]
+stream = ExtResource("29_enemy_die")
+
+[node name="Patrol3" type="CharacterBody2D" parent="Enemies" unique_id=471718112]
+position = Vector2(600, -220)
+collision_layer = 4
+script = ExtResource("4_patrol")
+patrol_distance = 150.0
+patrol_direction = Vector2(0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Patrol3" unique_id=82670414]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("15_patrol_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Patrol3" unique_id=1119688968]
+position = Vector2(0, 4)
+shape = SubResource("Shape_Enemy")
+
+[node name="HurtArea" type="Area2D" parent="Enemies/Patrol3" unique_id=943600365]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Patrol3/HurtArea" unique_id=966768581]
+shape = SubResource("Shape_EnemyHurt")
+
+[node name="SfxHit" type="AudioStreamPlayer2D" parent="Enemies/Patrol3" unique_id=1381904209]
+stream = ExtResource("28_hit")
+
+[node name="SfxDie" type="AudioStreamPlayer2D" parent="Enemies/Patrol3" unique_id=1051364845]
+stream = ExtResource("29_enemy_die")
+
+[node name="Chaser1" type="CharacterBody2D" parent="Enemies" unique_id=845191897]
+position = Vector2(-500, 480)
+collision_layer = 4
+script = ExtResource("5_chaser")
+detection_radius = 140.0
+give_up_radius = 240.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Chaser1" unique_id=925711535]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("16_chaser_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Chaser1" unique_id=2129045391]
+position = Vector2(0, 4)
+shape = SubResource("Shape_Enemy")
+
+[node name="HurtArea" type="Area2D" parent="Enemies/Chaser1" unique_id=1784181245]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Chaser1/HurtArea" unique_id=1140971906]
+shape = SubResource("Shape_EnemyHurt")
+
+[node name="SfxHit" type="AudioStreamPlayer2D" parent="Enemies/Chaser1" unique_id=1663531370]
+stream = ExtResource("28_hit")
+
+[node name="SfxDie" type="AudioStreamPlayer2D" parent="Enemies/Chaser1" unique_id=1758715104]
+stream = ExtResource("29_enemy_die")
+
+[node name="Chaser2" type="CharacterBody2D" parent="Enemies" unique_id=85033586]
+position = Vector2(-250, 650)
+collision_layer = 4
+script = ExtResource("5_chaser")
+chase_speed = 110.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Chaser2" unique_id=1406535006]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("16_chaser_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Chaser2" unique_id=1831995869]
+position = Vector2(0, 4)
+shape = SubResource("Shape_Enemy")
+
+[node name="HurtArea" type="Area2D" parent="Enemies/Chaser2" unique_id=1276912745]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Chaser2/HurtArea" unique_id=1938085568]
+shape = SubResource("Shape_EnemyHurt")
+
+[node name="SfxHit" type="AudioStreamPlayer2D" parent="Enemies/Chaser2" unique_id=1521504853]
+stream = ExtResource("28_hit")
+
+[node name="SfxDie" type="AudioStreamPlayer2D" parent="Enemies/Chaser2" unique_id=78475215]
+stream = ExtResource("29_enemy_die")
+
+[node name="Guardian1" type="CharacterBody2D" parent="Enemies" unique_id=1509844313]
+position = Vector2(-1050, 500)
+collision_layer = 4
+script = ExtResource("6_guardian")
+charge_speed = 190.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Guardian1" unique_id=1220226764]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("17_guardian_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Guardian1" unique_id=64000039]
+position = Vector2(0, 4)
+shape = SubResource("Shape_Enemy")
+
+[node name="HurtArea" type="Area2D" parent="Enemies/Guardian1" unique_id=1172801387]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Guardian1/HurtArea" unique_id=79655915]
+shape = SubResource("Shape_EnemyHurt")
+
+[node name="SfxHit" type="AudioStreamPlayer2D" parent="Enemies/Guardian1" unique_id=270615633]
+stream = ExtResource("28_hit")
+
+[node name="SfxDie" type="AudioStreamPlayer2D" parent="Enemies/Guardian1" unique_id=1402550865]
+stream = ExtResource("29_enemy_die")
+
+[node name="Guardian2" type="CharacterBody2D" parent="Enemies" unique_id=83470306]
+position = Vector2(1050, 500)
+collision_layer = 4
+script = ExtResource("6_guardian")
+charge_speed = 195.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Guardian2" unique_id=283449201]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("17_guardian_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Guardian2" unique_id=1549285525]
+position = Vector2(0, 4)
+shape = SubResource("Shape_Enemy")
+
+[node name="HurtArea" type="Area2D" parent="Enemies/Guardian2" unique_id=490970447]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Guardian2/HurtArea" unique_id=1500320498]
+shape = SubResource("Shape_EnemyHurt")
+
+[node name="SfxHit" type="AudioStreamPlayer2D" parent="Enemies/Guardian2" unique_id=648277808]
+stream = ExtResource("28_hit")
+
+[node name="SfxDie" type="AudioStreamPlayer2D" parent="Enemies/Guardian2" unique_id=1663064557]
+stream = ExtResource("29_enemy_die")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=2040749437 groups=["player"]]
+position = Vector2(0, 100)
+collision_layer = 2
+script = ExtResource("2_player")
+
+[node name="DustParticles" type="CPUParticles2D" parent="Player" unique_id=555080934]
 position = Vector2(0, 12)
 emitting = false
 amount = 6
-lifetime = 0.4
-speed_scale = 1.2
+lifetime = 0.38
 emission_shape = 1
-emission_sphere_radius = 4.0
-gravity = Vector2(0, -10)
+emission_sphere_radius = 5.0
+gravity = Vector2(0, -12)
+initial_velocity_min = 15.0
+initial_velocity_max = 30.0
 scale_amount_min = 2.0
 scale_amount_max = 4.0
-color = Color(0.6, 0.5, 0.4, 0.6)
+color = Color(0.65, 0.55, 0.4, 0.6)
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("21_player_idle")
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=388671023]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("18_player_tex")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=581936324]
 position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_player")
+shape = SubResource("Shape_Player")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2073496872]
+zoom = Vector2(2.5, 2.5)
+limit_left = -1250
+limit_top = -950
+limit_right = 1250
+limit_bottom = 950
 position_smoothing_enabled = true
-position_smoothing_speed = 6.0
+position_smoothing_speed = 7.0
 
-[node name="SfxFootstep" type="AudioStreamPlayer2D" parent="Player"]
-stream = ExtResource("22_sfx_footstep")
-volume_db = -6.0
+[node name="SfxFootstep" type="AudioStreamPlayer2D" parent="Player" unique_id=55327115]
+stream = ExtResource("25_footstep")
+volume_db = -5.0
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="SfxShoot" type="AudioStreamPlayer2D" parent="Player" unique_id=1377643122]
+stream = ExtResource("27_shoot")
 
-[node name="TopRightContainer" type="MarginContainer" parent="HUD"]
-anchors_preset = 1
-anchor_left = 1.0
+[node name="SfxHurt" type="AudioStreamPlayer2D" parent="Player" unique_id=1004235260]
+stream = ExtResource("30_hurt")
+volume_db = 2.0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1877354966]
+
+[node name="TopHUD" type="Panel" parent="HUD" unique_id=282603678]
+anchors_preset = 10
 anchor_right = 1.0
-offset_left = -210.0
-offset_bottom = 70.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("Style_HUDBar")
 
-[node name="ItemCounterPanel" type="PanelContainer" parent="HUD/TopRightContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
-
-[node name="MarginContainer" type="MarginContainer" parent="HUD/TopRightContainer/ItemCounterPanel"]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TopHUD" unique_id=942277730]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/TopHUD/MarginContainer" unique_id=1595280891]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 0
+alignment = 1
 
-[node name="Icon" type="TextureRect" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(24, 24)
+[node name="ScoreSection" type="VBoxContainer" parent="HUD/TopHUD/MarginContainer/HBoxContainer" unique_id=1711281951]
 layout_mode = 2
-texture = ExtResource("26_item_icon")
-expand_mode = 1
-stretch_mode = 5
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
-[node name="CountLabel" type="Label" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer/HBoxContainer"]
+[node name="ScoreTitle" type="Label" parent="HUD/TopHUD/MarginContainer/HBoxContainer/ScoreSection" unique_id=204294865]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
+theme_override_colors/font_color = Color(0.1, 0.75, 0.95, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 16
-text = "0/3"
+theme_override_font_sizes/font_size = 10
+text = "SCORE"
+horizontal_alignment = 1
 
-[node name="Slot1" type="TextureRect" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer/HBoxContainer"]
-modulate = Color(0.3, 0.3, 0.35, 0.6)
-custom_minimum_size = Vector2(18, 18)
-layout_mode = 2
-texture = ExtResource("26_item_icon")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Slot2" type="TextureRect" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer/HBoxContainer"]
-modulate = Color(0.3, 0.3, 0.35, 0.6)
-custom_minimum_size = Vector2(18, 18)
-layout_mode = 2
-texture = ExtResource("26_item_icon")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Slot3" type="TextureRect" parent="HUD/TopRightContainer/ItemCounterPanel/MarginContainer/HBoxContainer"]
-modulate = Color(0.3, 0.3, 0.35, 0.6)
-custom_minimum_size = Vector2(18, 18)
-layout_mode = 2
-texture = ExtResource("26_item_icon")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ToastPanel" type="PanelContainer" parent="HUD"]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -220.0
-offset_top = 20.0
-offset_right = 220.0
-offset_bottom = 65.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_toast")
-
-[node name="MarginContainer" type="MarginContainer" parent="HUD/ToastPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 6
-
-[node name="ToastLabel" type="Label" parent="HUD/ToastPanel/MarginContainer"]
+[node name="ScoreValue" type="Label" parent="HUD/TopHUD/MarginContainer/HBoxContainer/ScoreSection" unique_id=1322036537]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
-text = "✨ Memory Fragment [1/3] Terkumpul!"
+theme_override_font_sizes/font_size = 20
+text = "000000"
 horizontal_alignment = 1
 
-[node name="PauseMenu" type="Control" parent="HUD"]
+[node name="Sep1" type="VSeparator" parent="HUD/TopHUD/MarginContainer/HBoxContainer" unique_id=95921715]
+modulate = Color(0.1, 0.75, 0.95, 0.5)
+layout_mode = 2
+
+[node name="GemSection" type="VBoxContainer" parent="HUD/TopHUD/MarginContainer/HBoxContainer" unique_id=1618397873]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="GemTitle" type="Label" parent="HUD/TopHUD/MarginContainer/HBoxContainer/GemSection" unique_id=128940456]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.75, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 10
+text = "GEMS"
+horizontal_alignment = 1
+
+[node name="GemValue" type="Label" parent="HUD/TopHUD/MarginContainer/HBoxContainer/GemSection" unique_id=2014731910]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "00/10"
+horizontal_alignment = 1
+
+[node name="Sep2" type="VSeparator" parent="HUD/TopHUD/MarginContainer/HBoxContainer" unique_id=1696220157]
+modulate = Color(0.1, 0.75, 0.95, 0.5)
+layout_mode = 2
+
+[node name="TimeSection" type="VBoxContainer" parent="HUD/TopHUD/MarginContainer/HBoxContainer" unique_id=754184347]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="TimeTitle" type="Label" parent="HUD/TopHUD/MarginContainer/HBoxContainer/TimeSection" unique_id=1164574959]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.75, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 10
+text = "TIME"
+horizontal_alignment = 1
+
+[node name="TimeValue" type="Label" parent="HUD/TopHUD/MarginContainer/HBoxContainer/TimeSection" unique_id=492303464]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "03:00"
+horizontal_alignment = 1
+
+[node name="Sep3" type="VSeparator" parent="HUD/TopHUD/MarginContainer/HBoxContainer" unique_id=1998827996]
+modulate = Color(0.1, 0.75, 0.95, 0.5)
+layout_mode = 2
+
+[node name="LifeSection" type="VBoxContainer" parent="HUD/TopHUD/MarginContainer/HBoxContainer" unique_id=1824863909]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="LifeTitle" type="Label" parent="HUD/TopHUD/MarginContainer/HBoxContainer/LifeSection" unique_id=1487435617]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.75, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 10
+text = "LIFE"
+horizontal_alignment = 1
+
+[node name="Hearts" type="HBoxContainer" parent="HUD/TopHUD/MarginContainer/HBoxContainer/LifeSection" unique_id=1777774712]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Heart1" type="TextureRect" parent="HUD/TopHUD/MarginContainer/HBoxContainer/LifeSection/Hearts" unique_id=217432783]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("19_heart_full")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="HUD/TopHUD/MarginContainer/HBoxContainer/LifeSection/Hearts" unique_id=1389177609]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("19_heart_full")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart3" type="TextureRect" parent="HUD/TopHUD/MarginContainer/HBoxContainer/LifeSection/Hearts" unique_id=1007834701]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("19_heart_full")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MainMenuScreen" type="Control" parent="HUD" unique_id=22946287]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="HUD/MainMenuScreen" unique_id=1342044188]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.04, 0.14, 0.97)
+
+[node name="Panel" type="Panel" parent="HUD/MainMenuScreen" unique_id=2121453315]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Style_Overlay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MainMenuScreen/Panel" unique_id=690379194]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="HUD/MainMenuScreen/Panel/VBoxContainer" unique_id=712246461]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
+text = "GEM HUNT"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="HUD/MainMenuScreen/Panel/VBoxContainer" unique_id=1493995442]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "Kumpulkan 10 Permata sebelum waktu habis!"
+horizontal_alignment = 1
+
+[node name="ControlsLabel" type="Label" parent="HUD/MainMenuScreen/Panel/VBoxContainer" unique_id=1065992094]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 11
+text = "WASD / Arrows = Move     SPACE / Click = Shoot"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="HUD/MainMenuScreen/Panel/VBoxContainer" unique_id=495141330]
+custom_minimum_size = Vector2(200, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_BtnPrimary")
+text = "START GAME"
+
+[node name="QuitButton" type="Button" parent="HUD/MainMenuScreen/Panel/VBoxContainer" unique_id=377597209]
+custom_minimum_size = Vector2(200, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("Style_BtnRed")
+text = "QUIT"
+
+[node name="LevelCompleteScreen" type="Control" parent="HUD" unique_id=241858477]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="HUD/LevelCompleteScreen" unique_id=1044115676]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.08, 0.02, 0.95)
+
+[node name="Panel" type="Panel" parent="HUD/LevelCompleteScreen" unique_id=1876973978]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -210.0
+offset_right = 210.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Style_Overlay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/LevelCompleteScreen/Panel" unique_id=2040152226]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="HUD/LevelCompleteScreen/Panel/VBoxContainer" unique_id=358671685]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 28
+text = "LEVEL COMPLETE!"
+horizontal_alignment = 1
+
+[node name="SubLabel" type="Label" parent="HUD/LevelCompleteScreen/Panel/VBoxContainer" unique_id=1910752289]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "ALL GEMS COLLECTED!"
+horizontal_alignment = 1
+
+[node name="StatsContainer" type="VBoxContainer" parent="HUD/LevelCompleteScreen/Panel/VBoxContainer" unique_id=87827641]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LCScore" type="Label" parent="HUD/LevelCompleteScreen/Panel/VBoxContainer/StatsContainer" unique_id=249077591]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "SCORE: 000000"
+horizontal_alignment = 1
+
+[node name="LCGems" type="Label" parent="HUD/LevelCompleteScreen/Panel/VBoxContainer/StatsContainer" unique_id=2066363879]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "GEMS: 10/10"
+horizontal_alignment = 1
+
+[node name="LCTime" type="Label" parent="HUD/LevelCompleteScreen/Panel/VBoxContainer/StatsContainer" unique_id=1548397532]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "TIME LEFT: 00:00"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="HUD/LevelCompleteScreen/Panel/VBoxContainer" unique_id=983218402]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("Style_BtnPrimary")
+text = "PLAY AGAIN"
+
+[node name="LCMainMenuButton" type="Button" parent="HUD/LevelCompleteScreen/Panel/VBoxContainer" unique_id=266980083]
+custom_minimum_size = Vector2(200, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("Style_BtnSecondary")
+text = "MAIN MENU"
+
+[node name="GameOverScreen" type="Control" parent="HUD" unique_id=1579043754]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="HUD/GameOverScreen" unique_id=1005105494]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.02, 0.02, 0.95)
+
+[node name="Panel" type="Panel" parent="HUD/GameOverScreen" unique_id=1926471228]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Style_Overlay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/GameOverScreen/Panel" unique_id=1011494860]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="HUD/GameOverScreen/Panel/VBoxContainer" unique_id=176663108]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="StatsContainer" type="VBoxContainer" parent="HUD/GameOverScreen/Panel/VBoxContainer" unique_id=397320429]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="GOScore" type="Label" parent="HUD/GameOverScreen/Panel/VBoxContainer/StatsContainer" unique_id=1683297013]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "SCORE: 000000"
+horizontal_alignment = 1
+
+[node name="GOGems" type="Label" parent="HUD/GameOverScreen/Panel/VBoxContainer/StatsContainer" unique_id=712854935]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "GEMS FOUND: 0/10"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="HUD/GameOverScreen/Panel/VBoxContainer" unique_id=1716444291]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("Style_BtnPrimary")
+text = "RETRY"
+
+[node name="GOMainMenuButton" type="Button" parent="HUD/GameOverScreen/Panel/VBoxContainer" unique_id=1352911162]
+custom_minimum_size = Vector2(200, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("Style_BtnSecondary")
+text = "MAIN MENU"
+
+[node name="PauseScreen" type="Control" parent="HUD" unique_id=2045585263]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -664,7 +1678,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="HUD/PauseMenu"]
+[node name="BG" type="ColorRect" parent="HUD/PauseScreen" unique_id=809721873]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -673,7 +1687,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="Panel" type="Panel" parent="HUD/PauseMenu"]
+[node name="Panel" type="Panel" parent="HUD/PauseScreen" unique_id=1628414850]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -681,50 +1695,63 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -160.0
-offset_top = -140.0
+offset_top = -160.0
 offset_right = 160.0
-offset_bottom = 140.0
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pause")
+theme_override_styles/panel = SubResource("Style_Overlay")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PauseMenu/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PauseScreen/Panel" unique_id=584053938]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 14
 alignment = 1
 
-[node name="Title" type="Label" parent="HUD/PauseMenu/Panel/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="HUD/PauseScreen/Panel/VBoxContainer" unique_id=93709672]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
-theme_override_font_sizes/font_size = 20
-text = "GAME DI-PAUSE"
+theme_override_colors/font_color = Color(0.1, 0.75, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "PAUSED"
 horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="HUD/PauseMenu/Panel/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="HUD/PauseScreen/Panel/VBoxContainer" unique_id=75121764]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("Style_BtnPrimary")
+text = "RESUME"
+
+[node name="RestartButton" type="Button" parent="HUD/PauseScreen/Panel/VBoxContainer" unique_id=1677146525]
 custom_minimum_size = Vector2(180, 36)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Lanjutkan Permainan"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("Style_BtnSecondary")
+text = "RESTART"
 
-[node name="RestartButton" type="Button" parent="HUD/PauseMenu/Panel/VBoxContainer"]
+[node name="PauseQuitButton" type="Button" parent="HUD/PauseScreen/Panel/VBoxContainer" unique_id=1568298129]
 custom_minimum_size = Vector2(180, 36)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Ulangi dari Awal"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("Style_BtnRed")
+text = "QUIT"
 
-[node name="QuitButton" type="Button" parent="HUD/PauseMenu/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(180, 36)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Keluar Game"
-
-[node name="ScreenFlash" type="ColorRect" parent="HUD"]
-visible = false
+[node name="ScreenFlash" type="ColorRect" parent="HUD" unique_id=1190100902]
+z_index = 100
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -733,86 +1760,24 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="DialogSystem" type="CanvasLayer" parent="."]
-process_mode = 3
-script = ExtResource("23_dialog")
-
-[node name="Panel" type="Panel" parent="DialogSystem"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -420.0
-offset_top = -180.0
-offset_right = 420.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_dialog")
-
-[node name="MarginContainer" type="MarginContainer" parent="DialogSystem/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 18
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 18
-theme_override_constants/margin_bottom = 12
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DialogSystem/Panel/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Portrait" type="TextureRect" parent="DialogSystem/Panel/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(72, 72)
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("24_portrait")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DialogSystem/Panel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SpeakerLabel" type="Label" parent="DialogSystem/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 15
-text = "NPC Pemalas (Kamu)"
-
-[node name="DialogLabel" type="Label" parent="DialogSystem/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 14
-text = "Teks dialog..."
-autowrap_mode = 3
-
-[node name="HintLabel" type="Label" parent="DialogSystem/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
-theme_override_font_sizes/font_size = 11
-text = "[E / Klik] Lanjut | [ESC] Lewati"
-horizontal_alignment = 2
-
-[node name="SfxDialog" type="AudioStreamPlayer" parent="DialogSystem"]
-stream = ExtResource("25_sfx_dialog")
-volume_db = -8.0
-
-[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("27_bgm")
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=1116302953]
+stream = ExtResource("24_bgm")
 volume_db = -10.0
-autoplay = true
 
-[connection signal="pressed" from="HUD/PauseMenu/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="HUD/PauseMenu/Panel/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="HUD/PauseMenu/Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="SfxLevelComplete" type="AudioStreamPlayer" parent="." unique_id=2067101259]
+stream = ExtResource("31_complete")
+volume_db = 2.0
+
+[node name="SfxGameOver" type="AudioStreamPlayer" parent="." unique_id=1551007281]
+stream = ExtResource("32_gameover")
+volume_db = 2.0
+
+[connection signal="pressed" from="HUD/MainMenuScreen/Panel/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HUD/MainMenuScreen/Panel/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="HUD/LevelCompleteScreen/Panel/VBoxContainer/PlayAgainButton" to="." method="_on_lc_play_again_pressed"]
+[connection signal="pressed" from="HUD/LevelCompleteScreen/Panel/VBoxContainer/LCMainMenuButton" to="." method="_on_lc_main_menu_pressed"]
+[connection signal="pressed" from="HUD/GameOverScreen/Panel/VBoxContainer/RetryButton" to="." method="_on_go_retry_pressed"]
+[connection signal="pressed" from="HUD/GameOverScreen/Panel/VBoxContainer/GOMainMenuButton" to="." method="_on_go_main_menu_pressed"]
+[connection signal="pressed" from="HUD/PauseScreen/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="HUD/PauseScreen/Panel/VBoxContainer/RestartButton" to="." method="_on_pause_restart_pressed"]
+[connection signal="pressed" from="HUD/PauseScreen/Panel/VBoxContainer/PauseQuitButton" to="." method="_on_quit_pressed"]
